@@ -14,7 +14,8 @@
    
     <title>Home</title>
     <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-     <link href="<?php echo base_url(); ?>assets/css/main.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/main.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/parley/validation.css" rel="stylesheet" type="text/css">
     
 </head>
 
@@ -63,10 +64,28 @@
 <![endif]-->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/holder.js"></script>
-
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/messages.id.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/parsley.min.js"></script>
 <script type="text/javascript">
     var base_url = "<?php echo base_url(); ?>";
+    
+   $(document).ready(function () {
+        $(document).on('change','#all',function(){
+            if($(this).prop('checked'))
+            {      
+                $('.validation').prop("checked",true);               
+            }
+            else
+            {
+               $('.validation').prop("checked",false);
+            }
+        });
+        
+    });
+ 
 </script>
+
+
 <?php echo $js; ?>
 
 

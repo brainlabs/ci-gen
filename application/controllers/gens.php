@@ -50,7 +50,10 @@ class gens extends CI_Controller
     
     function build()
     {
-        $this->generate->build_view();
+        //$this->generate->build_view();
+       $msg = $this->generate->run($this->input->post('table'),$this->input->post('fields'));
+       
+       echo $msg;
     }
     
     

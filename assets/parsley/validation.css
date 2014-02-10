@@ -1,0 +1,39 @@
+/* 
+    Document   : validation
+    Created on : 04 Jan 14, 23:47:34
+    Author     : Daud Simbolon <daud.simbolon@gmail.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.parsley-error 
+{
+  border-color: #f53535;
+  color: #b94a48;
+}
+
+
+.parsley-error:focus {
+  border-color: #f53535 !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 2px rgba(245, 53, 53, 0.6) !important;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 2px rgba(245, 53, 53, 0.6) !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 2px rgba(245, 53, 53, 0.6) !important;
+}
+
+.parsley-error-list {
+ /* display: none;*/
+   list-style: none;
+ /*background: rgba(245, 53, 53, 0.8) !important;
+ 
+  border-color: #f53535 !important;
+  */
+  color: #f53535;
+  z-index: 1000;
+ 
+}
+.parsley-error-list > li{
+    margin-left: -40px !important;
+    padding: 0 0 2px 5px !important;
+    font-size: 10pt;
+    
+}

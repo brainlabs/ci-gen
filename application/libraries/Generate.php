@@ -2,6 +2,7 @@
 
 /**
  * Description of generator
+ * Create automatically crud code
  * @created on : 22 Jan 14, 0:57:11
  * @author DAUD D. SIMBOLON <daud.simbolon@gmail.com>
  */
@@ -11,8 +12,12 @@ class Generate
 {
 
     private $ci ;
+    public  $output ='./output/';
     
-    
+
+
+
+
     protected $tpl = array (
                     'table_open'          => '<table class="table table-condensed table-bordered">',
 
@@ -41,10 +46,20 @@ class Generate
         $this->ci->load->database();
     }
 
+    function year()
+    {
+        return date('Y');
+    }
 
-    
-    
-    // Ambil Seluruh tabel dari database
+    private function php_tags()
+    {
+        return array(
+            'php_open'=>'<?php',
+            'php_close'=>'?>'
+        );
+    }
+
+        // Ambil Seluruh tabel dari database
     public function get_table()
     {
         $list_table = $this->ci->db->list_tables();
@@ -79,7 +94,7 @@ class Generate
     function generate_form($table = null)
     {
         $this->ci->table->set_template($this->tpl); 
-        $this->ci->table->set_heading('Field', 'Field Type', 'Validation','Show');
+        $this->ci->table->set_heading('Field', 'Field Type', 'Validation ' . form_checkbox(array('id'=>'all','name'=>'all'),1,FALSE),'Show');
         $template = '';
         
         $data = array();
@@ -101,6 +116,7 @@ class Generate
                     $show = form_checkbox('fields['. $label->name .'][show]', 1,true);
                 }
                 
+                // chek 
                if(!$label->primary_key)
                {
                     if($label->type !== 'timestamp')
@@ -109,7 +125,13 @@ class Generate
                         $data[] = array(
                                 $label->name,
                                 $this->_dropdown('fields['. $label->name .'][type]'),
-                                form_checkbox('fields['. $label->name .'][validation]', 1,FALSE) . ' Required',
+                                form_checkbox(
+                                        array(
+                                            'name'=> 'fields['. $label->name .'][validation]',
+                                            'class'=> 'validation'
+                                            ), 
+                                            1,
+                                        FALSE) . ' Required',
                                 $show,
                             );
                    }
@@ -142,12 +164,12 @@ class Generate
     function _dropdown($name = 'dropdown')
     {
         $data = array(
-            'INPUT'=>'INPUT',
-            'CHECKBOX'=>'CHECKBOX',
-            'RADIO'=>'RADIO',
-            'PASSWORD'=> 'PASSWORD',
-            'SELECT'=>'SELECT',
-            'TEXTAREA'=>'TEXTAREA',            
+            'INPUT'     =>'INPUT',
+            'CHECKBOX'  =>'CHECKBOX',
+            'RADIO'     =>'RADIO',
+            'PASSWORD'  =>'PASSWORD',
+            'SELECT'    =>'SELECT',
+            'TEXTAREA'  =>'TEXTAREA',            
             );
         
         
@@ -155,20 +177,16 @@ class Generate
     }
     
     
-    function generate_model($nama_tabel,$fields)
-    {
-        $data['nama_tabel'] = $nama_tabel;
-        //$data['']
-    }
+       
     
     
-    
-    // Buat label dari filed
+    // Buat label dari field name
     function set_label($text = NULL)
     {
         if($text)
         {
-            $label = str_replace('_', ' ', $text);
+            $label = preg_replace('/_id$/', '', $text);
+            $label = str_replace('_', ' ', $label);
             $label = ucwords($label);
         }
         else
@@ -179,39 +197,56 @@ class Generate
         return $label;
     }
     
-    
-    
-    
-    // Render
-    
-    function render()
+        
+     // get tables field, label, primary_key
+    private function get_field_label ($table = NULL)
     {
-        $data['php_open'] = '<?php';
-        $data['php_close'] = '?>';
-        $data['nama_tabel'] = $tabel;
-    }
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    public function build_model($table =NULL)
-    {
-        if($table)
+        $label_name     = array();
+        $field_name     = array();
+        $field_search   = array();
+        $primary_key    = '';
+        $fields = $this->get_field($table);
+        
+        if($fields)
         {
-            $field = $this->get_field($table);
+            foreach ($fields as $field)
+            {
+                if(!$field->primary_key && $field->type !='timestamp')
+                {
+                    $field_name[] = array('field_name' => $field->name,'label'=> $this->set_label($field->name));
+                    $label_name[] = array('label_name' => $this->set_label($field->name));
+                }
+                
+                if($field->primary_key)
+                {
+                    $primary_key = $field->name;
+                }
+                
+                if($field->type == 'varchar' || $field->type == 'text')
+                {
+                    $field_search[] = array('field_name' => $field->name);
+                }
+                
+            }
         }
+        
+        return array(
+            'labels'        => $label_name,
+            'fields'        => $field_name,
+            'fields_search' => $field_search,
+            'primary_key'   => $primary_key
+           );
     }
     
     
-    public function build_view()
+    
+    
+    // Create Form
+    private function build_form($table,$post_field)
     {
-       $fields = $this->ci->input->post('fields');
-       $table_name = $this->ci->input->post('table');
+       //$fields = $this->ci->input->post('fields');
+       $fields = $post_field;
+       $table_name = $table;
        $form = array();
        foreach ($fields as $key => $val)
        {
@@ -226,27 +261,20 @@ class Generate
                $validation = '';
            }
            
-           $replace = preg_replace('/_id/', '', $key);
+         // $replace = preg_replace('/_id/', '', $key);
            
-           $config =  array(
-                            'name'  => $key,
-                            'id'    => $key,                       
-                            'class' => 'form-control input-sm $validation',
-                            'placeholder' => $this->set_label($key),
-                            ); 
-           
-           
+       
            switch ($val['type'])
            {
                case 'INPUT' :
                    $input = "form_input(
                                 array(
-                                 'name'  => '$key',
-                                 'id'    => '$key',                       
-                                 'class' => 'form-control input-sm $validation',
-                                 'placeholder' => '" . $this->set_label($key) . "',
+                                 'name'         => '$key',
+                                 'id'           => '$key',                       
+                                 'class'        => 'form-control input-sm $validation',
+                                 'placeholder'  => '" . $this->set_label($key) . "',
                                  ),
-                                 set_value('$key',\$table_name['$key'])
+                                 set_value('$key',\$table['$key'])
                            );";
                    break;
                
@@ -263,12 +291,12 @@ class Generate
                case 'PASSWORD' :
                    $input = "form_password(
                                 array(
-                                 'name'  => '$key',
-                                 'id'    => '$key',                       
-                                 'class' => 'form-control input-sm $validation',
-                                 'placeholder' => ' ". $this->set_label($key) ."',
+                                 'name'         => '$key',
+                                 'id'           => '$key',                       
+                                 'class'        => 'form-control input-sm $validation',
+                                 'placeholder'  => ' ". $this->set_label($key) ."',
                                  ),
-                                 set_value('$key',\$table_name['$key'])
+                                 set_value('$key',\$table['$key'])
                            );";
                    break;
                
@@ -287,12 +315,21 @@ class Generate
                            '$key',
                            $$replace,  
                            set_value('$key',''),
-                           'class=\"input-sm $validation\"'
+                           'class=\"input-sm $validation\"  id=\"$key\"'
                            );";
                    break;
                
                case 'TEXTAREA' :
-                   $input = form_textarea($config,  set_value($key),'rows="3"');
+                   $input = "form_textarea(
+                            array(
+                                'id'            =>'$key',
+                                'name'          =>'$key',
+                                'cols'          =>'$key',
+                                'class'         =>'form-control input-sm $validation',
+                                'placeholder'   =>'". $this->set_label($key) ."',
+                                ),
+                            set_value($key)                           
+                            );";
                    break;
                
                default :
@@ -303,45 +340,116 @@ class Generate
            
            if(isset($val['show']))
            {
-              // echo $this->generate->set_label($key) . '<br/>';
-              // echo  $input;
                
                $form[] = array (
-               'field' => $input,
-               'label' => $this->set_label($key)
-            );
+                            'input' => $input,
+                            'label' => $this->set_label($key),
+                            'field' => $key
+                        );
                
               
            }
           
-           
-      
-           
-          // echo '<br/>';
        }
        
+       $data                = $this->php_tags();
+       $data['forms']       = $form;
+       $data['table']       = $table;
+       //$data['php_open']    = "<?php";
+       //$data['php_close']   = "? >";
        
-       $data['form'] = $form;
+       $source = $this->ci->parser->parse('template/form.php', $data, TRUE);
        
-       $source = $this->ci->parser->parse('template/coba', $data, TRUE);
-       
-       write_file('./coba.php', $source);
+       write_file($this->output . $table . '/views/form.php', $source);
         
     }
     
     
-    private function create_form ($field = null)
+    // Create Model
+    private function build_model($table =NULL)
     {
-        $tpl = '';
+        $all                    = $this->get_field_label($table);
+        $data                   = $this->php_tags();
+        $data['fields_add']     = $all['fields'];
+        $data['fields_save']    = $all['fields'];
+        $data['fields_update']  = $all['fields'];
+        $data['fields_search']  = $all['fields_search'];
+        $data['primary_key']    = $all['primary_key'];
+        $data['labels']         = $all['labels'];
+        $data['table']          = $table;
+        $data['year']           = $this->year();
+        $source = $this->ci->parser->parse('template/model', $data, TRUE);
         
-        if($field)
+        write_file($this->output . $table . '/models/'. $table .'s.php', $source);
+        
+    }
+    
+    
+    private function build_controller($table =NULL)
+    {
+        $all = $this->get_field_label($table);
+        $data                   = $this->php_tags();
+        $data['fields_add']     = $all['fields'];
+        $data['fields_save']    = $all['fields'];
+        $data['primary_key']    = $all['primary_key'];
+        $data['labels']         = $all['labels'];
+        $data['table']          = $table;
+        $data['year']           = $this->year();
+        $source = $this->ci->parser->parse('template/controller.php', $data, TRUE);
+        
+        write_file($this->output . $table . '/controllers/'. $table .'.php', $source);
+        
+    }
+    
+    
+    private function build_view($table =null)
+    {        
+        $all                = $this->get_field_label($table);
+        $data               = $this->php_tags();
+        $data['fields']     = $all['fields'];
+        $data['labels']     = $all['labels'];
+        $data['primary_key']= $all['primary_key'];
+        $data['table']      = $table;
+
+        $source = $this->ci->parser->parse('template/view.php', $data, TRUE);
+
+        write_file($this->output . $table . '/views/view.php', $source);
+        
+        
+    }
+
+    
+
+
+
+    // Run to generate crud code
+    public function run($table = null,$post_field )
+    {
+        if($table)
         {
+            if(!is_dir($this->output . $table))
+            {
+                @mkdir($this->output . $table,DIR_WRITE_MODE,TRUE);
+                @mkdir($this->output . $table .'/controllers',DIR_WRITE_MODE,TRUE);
+                @mkdir($this->output . $table .'/models',DIR_WRITE_MODE,TRUE);
+                @mkdir($this->output . $table .'/views',DIR_WRITE_MODE,TRUE);
+            }
             
+            $this->build_controller($table);
+            $this->build_model($table);
+            $this->build_form($table, $post_field);
+            $this->build_view($table);
+            $msg = "Successfully to generate code of table $table";
+        }
+        else
+        {
+            $msg =  "Table $table not defined";
         }
         
-        return $tpl;
+        return $msg;
     }
     
+   
     
    
     

@@ -27,11 +27,13 @@ $(document).ready(function(){
         $(document).on('click','#build', function(event) {
 		event.preventDefault();
 		
-
+              var  $data = $("#form").serializeArray();
+                   $data.push({name : 'table', value :$('select[name=table]').val()});
+                
 		$.ajax({
                         type     : 'POST',
                         url      : base_url + 'gens/build',
-                        data     : $("#form").serialize(),
+                        data     : $data ,
                         cache    : false,
                         async    : false,
                         //contentType: 'application/json;',

@@ -1,13 +1,13 @@
-{php-open} if (!defined('BASEPATH')) exit('No direct script access allowed');
+{php_open} if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Description of ${table-name}
+ * Description of ${table}
  * @created on : {tanggal}
  * @author DAUD D. SIMBOLON <daud.simbolon@gmail.com>
  */
  
  
-class {table-name}s extends CI_Model 
+class {table}s extends CI_Model 
 {
 
     public function __construct() 
@@ -17,7 +17,7 @@ class {table-name}s extends CI_Model
 
 
     /**
-     *  Get All data
+     *  Get All data {table}
      *
      *  @param limit  : Integer
      *  @param offset : Integer
@@ -28,7 +28,7 @@ class {table-name}s extends CI_Model
     public function get_all($limit, $offset) 
     {
 
-        $result = $this->db->get('{table-name}', $limit, $offset);
+        $result = $this->db->get('{table}', $limit, $offset);
 
         if ($result->num_rows() > 0) 
         {
@@ -43,20 +43,20 @@ class {table-name}s extends CI_Model
     
 
     /**
-     *  Count All data
+     *  Count All {table}
      *    
      *  @return Integer
      *
      */
     public function count_all()
     {
-        $this->db->from('{table-name}');
+        $this->db->from('{table}');
         return $this->db->count_all_results();
     }
     
 
     /**
-    * Search All data
+    * Search All {table}
     *
     *  @param limit   : Integer
     *  @param offset  : Integer
@@ -67,11 +67,11 @@ class {table-name}s extends CI_Model
     */
     public function get_search($limit, $offset,$keyword) 
     {
-        {fields_search2}        
-        $this->db->or_like('{name_field_table}', $keyword);  
-        {/fields_search2}
+        {fields_search}        
+        $this->db->like('{field_name}', $keyword);  
+        {/fields_search}
         $this->db->limit($limit, $offset);
-        $result = $this->db->get('{table-name}');
+        $result = $this->db->get('{table}');
 
         if ($result->num_rows() > 0) 
         {
@@ -89,7 +89,7 @@ class {table-name}s extends CI_Model
     
     
     /**
-    * Search All data
+    * Search All {table}
     *  @param keyword : mixed
     *
     *  @return Integer
@@ -97,9 +97,9 @@ class {table-name}s extends CI_Model
     */
     public function count_all_search($keyword)
     {
-        $this->db->from('{table-name}');        
+        $this->db->from('{table}');        
         {fields_search}        
-        $this->db->or_like('{name_field_table}', $keyword);  
+        $this->db->like('{field_name}', $keyword);  
         {/fields_search}
         return $this->db->count_all_results();
     }
@@ -109,7 +109,7 @@ class {table-name}s extends CI_Model
     
     
     /**
-    *  Get One data
+    *  Get One {table}
     *
     *  @param id : Integer
     *
@@ -119,7 +119,7 @@ class {table-name}s extends CI_Model
     public function get_one($id) 
     {
         $this->db->where('{primary_key_tabel}{primary_key}', $id);
-        $result = $this->db->get('{table-name}');
+        $result = $this->db->get('{table}');
 
         if ($result->num_rows() == 1) 
         {
@@ -135,7 +135,7 @@ class {table-name}s extends CI_Model
     
     
     /**
-    *  Default New data form
+    *  Default form data {table}
     *  @return array
     *
     */
@@ -143,7 +143,7 @@ class {table-name}s extends CI_Model
     {
         $data = array(
             {fields_add}
-                '{name_field_table}' => '',
+                '{field_name}' => '',
             {/fields_add}
         );
 
@@ -160,15 +160,16 @@ class {table-name}s extends CI_Model
     *  @return void
     *
     */
-    public function save() 
+    public function save($id = NULL) 
     {
         $data = array(
-        {fields_tabel1}
-            '{name_field_table}' => $this->input->post('{name_field_table}', TRUE),
-        {/fields_tabel1}
+        {fields_save}
+            '{field_name}' => $this->input->post('{field_name}', TRUE),
+        {/fields_save}
         );
-
-        $this->db->insert('{table-name}', $data);
+        
+        
+        $this->db->insert('{table}', $data);
     }
     
     
@@ -186,12 +187,14 @@ class {table-name}s extends CI_Model
     public function update($id)
     {
         $data = array(
-        {fields_tabel2}
-                '{name_field_table}' => $this->input->post('{name_field_table}', TRUE),
-        {/fields_tabel2}
+        {fields_update}
+                '{field_name}' => $this->input->post('{field_name}', TRUE),
+        {/fields_update}
         );
+        
+        
         $this->db->where('{primary_key}', $id);
-        $this->db->update('{table-name}', $data);
+        $this->db->update('{table}', $data);
     }
 
 
@@ -208,8 +211,8 @@ class {table-name}s extends CI_Model
     */
     public function delete($id)
     {       
-        $this->db->where('{primary_key}{/primary_key_tabel}', $id);
-        $this->db->delete('{table-name}');
+        $this->db->where('{primary_key}', $id);
+        $this->db->delete('{table}');
         
     }
 
