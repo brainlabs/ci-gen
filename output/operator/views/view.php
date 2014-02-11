@@ -2,18 +2,18 @@
     <header class="panel-heading">
         <div class="row">
             <div class="col-md-8">                
-                {php_open}
+                <?php
                                   echo anchor(
-                                           site_url('{table}/add'),
+                                           site_url('operator/add'),
                                             '<i class="glyphicon glyphicon-plus"></i>',
                                             'class="btn btn-success btn-sm"'
                                           );
-                 {php_close}
+                 ?>
                 
             </div>
             <div class="col-md-4">
                                            
-                 {php_open} echo form_open(site_url('{table}/search'), 'role="search" class="form"') ;?>       
+                 <?php echo form_open(site_url('operator/search'), 'role="search" class="form"') ;?>       
                            <div class="input-group pull-right">                      
                                  <input type="text" class="form-control input-sm" placeholder="Cari data" name="q" autocomplete="off"> 
                                  <span class="input-group-btn">
@@ -22,58 +22,74 @@
                            </div>
                            
                </form> 
-                {php_open} echo form_close(); {php_close}
+                <?php echo form_close(); ?>
             </div>
         </div>
     </header>
     
     
     <div class="panel-body">
-         {php_open} if (${table}s) : {php_close}
+         <?php if ($operators) : ?>
           <table class="table table-hover table-condensed">
               
             <thead>
               <tr>
                 <th class="header">#</th>
-                {labels}
-                    <th>{label_name}</th>   
-                {/labels}
+                
+                    <th>Nama</th>   
+                
+                    <th>Username</th>   
+                
+                    <th>Password</th>   
+                
+                    <th>Jabaatan</th>   
+                
+                    <th>No Telepon</th>   
+                
                 <th class="red header" align="right" width="160">Aksi</th>
               </tr>
             </thead>
             
             
             <tbody>
-                {php_open} $counter =1; {php_close} 
-               {php_open} foreach (${table}s as $table) : {php_close}
+                <?php $counter =1; ?> 
+               <?php foreach ($operators as $table) : ?>
               <tr>
-              	<td>{php_open} echo $counter++; {php_close} </td>
-               {fields}
-               <td>{php_open} echo $table['{field_name}']; {php_close}</td>
-               {/fields}
+              	<td><?php echo $counter++; ?> </td>
+               
+               <td><?php echo $table['nama']; ?></td>
+               
+               <td><?php echo $table['username']; ?></td>
+               
+               <td><?php echo $table['password']; ?></td>
+               
+               <td><?php echo $table['jabaatan_id']; ?></td>
+               
+               <td><?php echo $table['no_telepon']; ?></td>
+               
                 <td>                   
-                    {php_open}
+                    <?php
                                   echo anchor(
-                                          site_url('{table}/edit/' . ${table}['{primary_key}']),
+                                          site_url('operator/edit/' . $operator['operator_id']),
                                             '<i class="glyphicon glyphicon-edit"></i>',
                                             'class="btn btn-sm btn-success"'
                                           );
-                   {php_close}
+                   ?>
                    
-                   {php_open}
+                   <?php
                                   echo anchor(
-                                          site_url('{table}/delete/' . ${table}['{primary_key}']),
+                                          site_url('operator/delete/' . $operator['operator_id']),
                                             '<i class="glyphicon glyphicon-trash"></i>',
                                             'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger"'
                                           );
-                   {php_close}   
+                   ?>   
                                  
                 </td>
               </tr>     
-               {php_open} endforeach; {php_close}
+               <?php endforeach; ?>
             </tbody>
           </table>
-          {php_open} endif; {php_close}
+          <?php endif; ?>
     </div>
     
     
@@ -82,11 +98,11 @@
            <div class="col-md-3">
                Agama
                <span class="label label-info">
-                    {php_open} echo $total; {php_close}
+                    <?php echo $total; ?>
                </span>
            </div>  
            <div class="col-md-9">
-                 {php_open} echo $pagination; {php_close}
+                 <?php echo $pagination; ?>
            </div>
         </div>
     </div>

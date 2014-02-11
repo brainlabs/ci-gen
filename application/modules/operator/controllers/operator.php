@@ -1,34 +1,34 @@
-{php_open} if (!defined('BASEPATH'))  exit('No direct script access allowed');
+<?php if (!defined('BASEPATH'))  exit('No direct script access allowed');
 
 /**
- * Controller {table}
+ * Controller operator
  * @created on : {tanggal}
  * @author Daud D. Simbolon <daud.simbolon@gmail.com>
- * Copyright {year}
+ * Copyright 2014
  *
  *
  */
 
 
-class {table} extends MY_Controller
+class operator extends MY_Controller
 {
 
     public function __construct() 
     {
         parent::__construct();         
-        $this->load->model('{table}s');
+        $this->load->model('operators');
     }
     
 
     /**
-    * List all data {table}
+    * List all data operator
     *
     */
     public function index() 
     {
         $config = array(
-            'base_url'          => site_url('{table}/index/'),
-            'total_rows'        => $this->{table}s->count_all(),
+            'base_url'          => site_url('operator/index/'),
+            'total_rows'        => $this->operators->count_all(),
             'per_page'          => $this->config->item('per_page'),
             'uri_segment'       => 3,
             'num_links'         => 9,
@@ -40,36 +40,36 @@ class {table} extends MY_Controller
         $data['total']          = $config['total_rows'];
         $data['pagination']     = $this->pagination->create_links();
         $data['number']         = $this->uri->segment(3);
-        $data['{table}s']       = $this->{table}s->get_all($config['per_page'], $this->uri->segment(3));
-        $this->template->render('{table}/view',$data);
+        $data['operators']       = $this->operators->get_all($config['per_page'], $this->uri->segment(3));
+        $this->template->render('operator/view',$data);
 	      
     }
 
     
 
     /**
-    * Call Form to Add  New {table}
+    * Call Form to Add  New operator
     *
     */
     public function add() 
     {       
-        $data['{table}'] = $this->{table}s->add();
-        $data['action']  = '{table}/save';
+        $data['operator'] = $this->operators->add();
+        $data['action']  = 'operator/save';
         
         $this->template->js_add('
                 $(document).ready(function(){
                 // binds form submission and fields to the validation engine
-                $("#form_{table}").parsley("validate");
+                $("#form_operator").parsley("validate");
                         });','embed');
       
-        $this->template->render('{table}/form',$data);
+        $this->template->render('operator/form',$data);
 
     }
 
     
 
     /**
-    * Call Form to Modify {table}
+    * Call Form to Modify operator
     *
     */
     public function edit($id='') 
@@ -77,43 +77,67 @@ class {table} extends MY_Controller
         if ($id != '') 
         {
 
-            $data['{table}'] = $this->{table}s->get_one($id);
-            $data['action']       = '{table}/save/' . $id;           
+            $data['operator'] = $this->operators->get_one($id);
+            $data['action']       = 'operator/save/' . $id;           
             
            
             $this->template->js_add('
                      $(document).ready(function(){
                     // binds form submission and fields to the validation engine
-                    $("#form_{table}").parsley("validate");
+                    $("#form_operator").parsley("validate");
                                     });','embed');
             
-            $this->template->render('{table}/form',$data);
+            $this->template->render('operator/form',$data);
             
         }
         else 
         {
             $this->session->set_flashdata('notif', alert('Data tidak ditemukan','info'));
-            redirect(site_url('{table}'));
+            redirect(site_url('operator'));
         }
     }
 
 
     
     /**
-    * Save & Update data  {table}
+    * Save & Update data  operator
     *
     */
     public function save($id =NULL) 
     {
         // validation config
         $config = array(
-                  {fields_save}
+                  
                     array(
-                        'field' => '{field_name}',
-                        'label' => '{label}',
+                        'field' => 'nama',
+                        'label' => 'Nama',
                         'rules' => 'trim|required|xss_clean'
                         ),
-                    {/fields_save}           
+                    
+                    array(
+                        'field' => 'username',
+                        'label' => 'Username',
+                        'rules' => 'trim|required|xss_clean'
+                        ),
+                    
+                    array(
+                        'field' => 'password',
+                        'label' => 'Password',
+                        'rules' => 'trim|required|xss_clean'
+                        ),
+                    
+                    array(
+                        'field' => 'jabaatan_id',
+                        'label' => 'Jabaatan',
+                        'rules' => 'trim|required|xss_clean'
+                        ),
+                    
+                    array(
+                        'field' => 'no_telepon',
+                        'label' => 'No Telepon',
+                        'rules' => 'trim|required|xss_clean'
+                        ),
+                               
                   );
             
         // if id NULL then add new data
@@ -126,9 +150,9 @@ class {table} extends MY_Controller
                       if ($this->input->post()) 
                       {
                           
-                          $this->{table}s->save();
+                          $this->operators->save();
                           $this->session->set_flashdata('notif', alert('Data berhasil di simpan','success'));
-                          redirect('{table}');
+                          redirect('operator');
                       }
                   } 
                   else // If validation incorrect 
@@ -144,9 +168,9 @@ class {table} extends MY_Controller
                 {
                     if ($this->input->post()) 
                     {
-                        $this->{table}s->update($id);
+                        $this->operators->update($id);
                         $this->session->set_flashdata('notif', alert('Data berhasil di update','success'));
-                        redirect('{table}');
+                        redirect('operator');
                     }
                 } 
                 else // If validation incorrect 
@@ -158,7 +182,7 @@ class {table} extends MY_Controller
 
     
     /**
-    * Search {table} like ""
+    * Search operator like ""
     *
     */   
     public function search($keyword='',$offset=0)
@@ -169,8 +193,8 @@ class {table} extends MY_Controller
         }
         
          $config = array(
-            'base_url'          => site_url('{table}/search/' . $keyword),
-            'total_rows'        => $this->{table}s->count_all_search($keyword),
+            'base_url'          => site_url('operator/search/' . $keyword),
+            'total_rows'        => $this->operators->count_all_search($keyword),
             'per_page'          => $this->config->item('per_page'),
             'uri_segment'       => 4,
             'num_links'         => 9,
@@ -181,31 +205,31 @@ class {table} extends MY_Controller
         $data['total']          = $config['total_rows'];
         $data['number']         = $this->uri->segment(4);
         $data['pagination']     = $this->pagination->create_links();
-        $data['{table}s']       = $this->{table}s->get_search($config['per_page'], $this->uri->segment(4),$keyword);
+        $data['operators']       = $this->operators->get_search($config['per_page'], $this->uri->segment(4),$keyword);
        
-        $this->template->render('{table}/view',$data);
+        $this->template->render('operator/view',$data);
     }
     
     
     /**
-    * Delete {table} by ID
+    * Delete operator by ID
     *
     */
     public function delete($id) 
     {        
         if ($id) 
         {
-            $this->{table}s->delete($id);           
+            $this->operators->delete($id);           
              $this->session->set_flashdata('notif', alert('Data berhasil di hapus','success'));
-             redirect('{table}');
+             redirect('operator');
         } 
         else 
         {
             $this->session->set_flashdata('notif', alert('Data tidak ditemukan','warning'));
-            redirect('{table}');
+            redirect('operator');
         }       
     }
 
 }
 
-{php_close}
+?>

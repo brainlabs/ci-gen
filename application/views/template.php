@@ -15,7 +15,7 @@
     <title>Home</title>
     <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/main.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/parley/validation.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/parsley/validation.css" rel="stylesheet" type="text/css">
     
 </head>
 
@@ -34,7 +34,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo site_url('gens'); ?>">Home</a></li>
+            <li><a href="<?php echo site_url('operator'); ?>">Operator</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

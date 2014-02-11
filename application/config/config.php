@@ -16,6 +16,11 @@
 */
 $config['base_url']	= 'http://' . $_SERVER['SERVER_NAME'] . str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
 
+
+
+$config['per_page'] = 10;
+
+
 /*
 |--------------------------------------------------------------------------
 | Index File

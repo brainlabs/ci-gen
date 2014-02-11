@@ -261,7 +261,7 @@ class Generate
                $validation = '';
            }
            
-         // $replace = preg_replace('/_id/', '', $key);
+          $replace = preg_replace('/_id$/', '', $key);
            
        
            switch ($val['type'])
@@ -274,15 +274,15 @@ class Generate
                                  'class'        => 'form-control input-sm $validation',
                                  'placeholder'  => '" . $this->set_label($key) . "',
                                  ),
-                                 set_value('$key',\$table['$key'])
+                                 set_value('$key',\${table}['$key'])
                            );";
                    break;
                
                case 'CHECKBOX' :
                    $input = "form_checkbox(
                             array(
-                                 'name'  => $key,
-                                 'id'    => $key,                       
+                                 'name'  => '$key',
+                                 'id'    => '$key',                       
                                  'class' => 'form-control input-sm $validation',                                 
                                  )
                             )";
@@ -296,7 +296,7 @@ class Generate
                                  'class'        => 'form-control input-sm $validation',
                                  'placeholder'  => ' ". $this->set_label($key) ."',
                                  ),
-                                 set_value('$key',\$table['$key'])
+                                 set_value('$key',\${table}['$key'])
                            );";
                    break;
                
@@ -314,7 +314,7 @@ class Generate
                    $input = "form_dropdown(
                            '$key',
                            $$replace,  
-                           set_value('$key',''),
+                           set_value('$key',\${table}['$key']),
                            'class=\"input-sm $validation\"  id=\"$key\"'
                            );";
                    break;
@@ -328,7 +328,7 @@ class Generate
                                 'class'         =>'form-control input-sm $validation',
                                 'placeholder'   =>'". $this->set_label($key) ."',
                                 ),
-                            set_value($key)                           
+                            set_value('$key',\${table}['$key'])                           
                             );";
                    break;
                
