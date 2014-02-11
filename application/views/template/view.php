@@ -73,6 +73,8 @@
                {php_open} endforeach; {php_close}
             </tbody>
           </table>
+          {php_open} else: {php_close}
+                {php_open}  echo notify('Data {table} belum tersedia','info');{php_close}
           {php_open} endif; {php_close}
     </div>
     
@@ -80,7 +82,7 @@
     <div class="panel-footer">
         <div class="row">
            <div class="col-md-3">
-               Agama
+               {table}
                <span class="label label-info">
                     {php_open} echo $total; {php_close}
                </span>

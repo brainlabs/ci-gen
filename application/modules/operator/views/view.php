@@ -42,7 +42,7 @@
                 
                     <th>Password</th>   
                 
-                    <th>Jabaatan</th>   
+                    <th>Jabatan</th>   
                 
                     <th>No Telepon</th>   
                 
@@ -63,7 +63,7 @@
                
                <td><?php echo $table['password']; ?></td>
                
-               <td><?php echo $table['jabaatan_id']; ?></td>
+               <td><?php echo $table['jabatan_id']; ?></td>
                
                <td><?php echo $table['no_telepon']; ?></td>
                
@@ -89,6 +89,8 @@
                <?php endforeach; ?>
             </tbody>
           </table>
+          <?php else: ?>
+                <?php  echo notify('Data operator belum tersedia','info');?>
           <?php endif; ?>
     </div>
     
@@ -96,7 +98,7 @@
     <div class="panel-footer">
         <div class="row">
            <div class="col-md-3">
-               Agama
+               operator
                <span class="label label-info">
                     <?php echo $total; ?>
                </span>

@@ -59,7 +59,7 @@ class operator extends MY_Controller
         $this->template->js_add('
                 $(document).ready(function(){
                 // binds form submission and fields to the validation engine
-                $("#form_operator").parsley("validate");
+                $("#form_operator").parsley();
                         });','embed');
       
         $this->template->render('operator/form',$data);
@@ -84,7 +84,7 @@ class operator extends MY_Controller
             $this->template->js_add('
                      $(document).ready(function(){
                     // binds form submission and fields to the validation engine
-                    $("#form_operator").parsley("validate");
+                    $("#form_operator").parsley();
                                     });','embed');
             
             $this->template->render('operator/form',$data);
@@ -127,8 +127,8 @@ class operator extends MY_Controller
                         ),
                     
                     array(
-                        'field' => 'jabaatan_id',
-                        'label' => 'Jabaatan',
+                        'field' => 'jabatan_id',
+                        'label' => 'Jabatan',
                         'rules' => 'trim|required|xss_clean'
                         ),
                     

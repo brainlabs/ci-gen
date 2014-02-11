@@ -59,7 +59,7 @@ class {table} extends MY_Controller
         $this->template->js_add('
                 $(document).ready(function(){
                 // binds form submission and fields to the validation engine
-                $("#form_{table}").parsley("validate");
+                $("#form_{table}").parsley();
                         });','embed');
       
         $this->template->render('{table}/form',$data);
@@ -84,7 +84,7 @@ class {table} extends MY_Controller
             $this->template->js_add('
                      $(document).ready(function(){
                     // binds form submission and fields to the validation engine
-                    $("#form_{table}").parsley("validate");
+                    $("#form_{table}").parsley();
                                     });','embed');
             
             $this->template->render('{table}/form',$data);

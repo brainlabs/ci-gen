@@ -161,7 +161,7 @@ class operators extends CI_Model
             
                 'password' => '',
             
-                'jabaatan_id' => '',
+                'jabatan_id' => '',
             
                 'no_telepon' => '',
             
@@ -190,7 +190,7 @@ class operators extends CI_Model
         
             'password' => $this->input->post('password', TRUE),
         
-            'jabaatan_id' => $this->input->post('jabaatan_id', TRUE),
+            'jabatan_id' => $this->input->post('jabatan_id', TRUE),
         
             'no_telepon' => $this->input->post('no_telepon', TRUE),
         
@@ -222,7 +222,7 @@ class operators extends CI_Model
         
                 'password' => $this->input->post('password', TRUE),
         
-                'jabaatan_id' => $this->input->post('jabaatan_id', TRUE),
+                'jabatan_id' => $this->input->post('jabatan_id', TRUE),
         
                 'no_telepon' => $this->input->post('no_telepon', TRUE),
         

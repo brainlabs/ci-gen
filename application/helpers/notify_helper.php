@@ -11,9 +11,9 @@
  */
 
 
-if(!function_exists('alert'))
+if(!function_exists('notify'))
 {
-    function alert($msg,$type = 'info') 
+    function notify($msg,$type = 'info') 
     {
         $tpl = '';
         switch ($type)

@@ -6,7 +6,7 @@
     <div class="panel-heading"><i class="glyphicon glyphicon-signal"></i> </div>
      
       <div class="panel-body">
-         <?php echo form_open(site_url('operator'),'role="form" class="form-horizontal" id="form_operator"'); ?>
+         <?php echo form_open(site_url('operator'),'role="form" class="form-horizontal" id="form_operator" parsley-validate'); ?>
                 
          
                        
@@ -65,19 +65,19 @@
               </div> <!--/ Password -->
                           
                <div class="form-group">
-                   <label for="jabaatan_id" class="col-sm-2 control-label">Jabaatan</label>
+                   <label for="jabatan_id" class="col-sm-2 control-label">Jabatan</label>
                 <div class="col-sm-6">                                   
                   <?php                  
                    echo form_dropdown(
-                           'jabaatan_id',
-                           $jabaatan,  
-                           set_value('jabaatan_id',$operator['jabaatan_id']),
-                           'class="input-sm  required"  id="jabaatan_id"'
+                           'jabatan_id',
+                           $jabatan,  
+                           set_value('jabatan_id',$operator['jabatan_id']),
+                           'class="input-sm  required"  id="jabatan_id"'
                            );             
                   ?>
-                  <p class="help-block "><?php echo form_error('jabaatan_id');?></p>
+                  <p class="help-block "><?php echo form_error('jabatan_id');?></p>
                 </div>
-              </div> <!--/ Jabaatan -->
+              </div> <!--/ Jabatan -->
                           
                <div class="form-group">
                    <label for="no_telepon" class="col-sm-2 control-label">No Telepon</label>
