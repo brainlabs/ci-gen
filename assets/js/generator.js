@@ -12,10 +12,14 @@ $(document).ready(function(){
                         //contentType: 'application/json;',
                         dataType : 'json',
                         success: function(data){                       
-                        
-                           $("#proses").html(data);
+                           $("#proses").html(data);                           
                         },
-                       
+                        complete: function(){
+                            $("#loader").hide();
+                       },
+                       beforeSend : function(){
+                        $("#loader").show();
+                       },
                         error: function(xhr, textStatus, errorThrown){
                              console.log("status : " + errorThrown);
                             // console.log(errorThrown);
@@ -41,6 +45,13 @@ $(document).ready(function(){
                         success: function(data){                       
                         
                         },
+
+                       complete: function(){
+                          $("#loader").hide();
+                       },
+                       beforeSend : function(){
+                        $("#loader").show();
+                       },
                        
                         error: function(xhr, textStatus, errorThrown){
                              console.log("status : " + errorThrown);

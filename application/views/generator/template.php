@@ -36,6 +36,9 @@
           <ul class="nav navbar-nav">
             <li><a href="<?php echo site_url('gens'); ?>">Home</a></li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><img src="<?php echo base_url('assets/img/ajax-loader.gif'); ?>" id="loader" style="display:none;"/></a></li>
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
