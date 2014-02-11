@@ -69,20 +69,6 @@
 <script type="text/javascript">
     var base_url = "<?php echo base_url(); ?>";
     
-   $(document).ready(function () {
-        $(document).on('change','#all',function(){
-            if($(this).prop('checked'))
-            {      
-                $('.validation').prop("checked",true);               
-            }
-            else
-            {
-               $('.validation').prop("checked",false);
-            }
-        });
-        
-    });
- 
 </script>
 
 

@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 		$.ajax({
                         type     : 'POST',
-                        url      : base_url + 'gens/write',
+                        url      : base_url + 'index.php/gens/write',
                         data     : $("#generator").serialize(),
                         cache    : false,
                         async    : false,
@@ -32,7 +32,7 @@ $(document).ready(function(){
                 
 		$.ajax({
                         type     : 'POST',
-                        url      : base_url + 'gens/build',
+                        url      : base_url + 'index.php/gens/build',
                         data     : $data ,
                         cache    : false,
                         async    : false,
