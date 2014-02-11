@@ -50,7 +50,8 @@ class Generate
     {
         return date('Y');
     }
-
+	
+	// Default Template PHP TAGS
     private function php_tags()
     {
         return array(
@@ -59,7 +60,7 @@ class Generate
         );
     }
 
-        // Ambil Seluruh tabel dari database
+    // Get All Table  From Database
     public function get_table()
     {
         $list_table = $this->ci->db->list_tables();
@@ -90,8 +91,14 @@ class Generate
         }
     }
     
-    // Generate Form 
-    function generate_form($table = null)
+  
+	/**
+	 * Get Field From table to create View
+	 * @param $table table name @string
+	 * @return @Mixed
+	 * @access Public
+	 */
+    public function generate_form($table = null)
     {
         $this->ci->table->set_template($this->tpl); 
         $this->ci->table->set_heading('Field', 'Field Type', 'Validation ' . form_checkbox(array('id'=>'all','name'=>'all'),1,FALSE),'Show');
@@ -160,7 +167,7 @@ class Generate
     }
     
     
-    
+    // Create Dropdown Input Field Type
     function _dropdown($name = 'dropdown')
     {
         $data = array(
@@ -179,9 +186,14 @@ class Generate
     
        
     
-    
-    // Buat label dari field name
-    function set_label($text = NULL)
+ 
+	/**
+	 * Set Field Label Like Attribute Label on Field Name
+	 * @param $text field name @string
+	 * @return @Text
+	 * @access private
+	 */
+    public function set_label($text = NULL)
     {
         if($text)
         {
@@ -198,7 +210,13 @@ class Generate
     }
     
         
-     // get tables field, label, primary_key
+     
+	/**
+	 * Get Field Name Form table & Set Field Label 
+	 * @param $table table name @string
+	 * @return @Array
+	 * @access private
+	 */
     private function get_field_label ($table = NULL)
     {
         $label_name     = array();
@@ -211,17 +229,21 @@ class Generate
         {
             foreach ($fields as $field)
             {
+				// get field if not primary key & if type not timestamp
                 if(!$field->primary_key && $field->type !='timestamp')
                 {
+					
                     $field_name[] = array('field_name' => $field->name,'label'=> $this->set_label($field->name));
                     $label_name[] = array('label_name' => $this->set_label($field->name));
                 }
                 
+				// get Primary key field
                 if($field->primary_key)
                 {
                     $primary_key = $field->name;
                 }
                 
+				// Get field only type Text & Varchar, use to query searching 
                 if($field->type == 'varchar' || $field->type == 'text')
                 {
                     $field_search[] = array('field_name' => $field->name);
@@ -241,17 +263,23 @@ class Generate
     
     
     
-    // Create Form
+    /**
+	 * Write Form
+	 * @param $table table name @string
+	 * @param $post_field get post field @Mixed 
+	 * @return Void
+	 * @access private
+	 */
     private function build_form($table,$post_field)
     {
-       //$fields = $this->ci->input->post('fields');
+       
        $fields = $post_field;
        $table_name = $table;
        $form = array();
        foreach ($fields as $key => $val)
        {
            
-           
+           // If Checkbox Required checked
            if(isset($val['validation']))
            {
                $validation =  " required";
@@ -263,7 +291,8 @@ class Generate
            
           $replace = preg_replace('/_id$/', '', $key);
            
-       
+			
+			// Get Type Input Field from POST Field
            switch ($val['type'])
            {
                case 'INPUT' :
@@ -365,7 +394,12 @@ class Generate
     }
     
     
-    // Create Model
+    /**
+	 * Write Model
+	 * @param $table table name @string
+	 * @return Void
+	 * @access private
+	 */
     private function build_model($table =NULL)
     {
         $all                    = $this->get_field_label($table);
@@ -385,9 +419,15 @@ class Generate
     }
     
     
+	/**
+	 * Write Controller
+	 * @param $table table name @string
+	 * @return Void
+	 * @access private
+	 */
     private function build_controller($table =NULL)
     {
-        $all = $this->get_field_label($table);
+        $all 					= $this->get_field_label($table);
         $data                   = $this->php_tags();
         $data['fields_add']     = $all['fields'];
         $data['fields_save']    = $all['fields'];
@@ -402,6 +442,13 @@ class Generate
     }
     
     
+	
+	/**
+	 * Write View List
+	 * @param $table table name
+	 * @return Void
+	 * @access private
+	 */
     private function build_view($table =null)
     {        
         $all                = $this->get_field_label($table);
@@ -421,8 +468,14 @@ class Generate
     
 
 
-
-    // Run to generate crud code
+	
+    /**
+	 * Run Generate CRUD Code
+	 * @param $table table name @String
+	 * @param $post_field get post field @Mixed 
+	 * @return $msg @String
+	 * @access Public
+	 */
     public function run($table = null,$post_field )
     {
         if($table)
