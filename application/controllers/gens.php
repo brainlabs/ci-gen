@@ -66,6 +66,47 @@ class gens extends CI_Controller
             echo '<br/>';
         }
     }
+
+
+
+    private function dir_to_array($dir, $separator = DIRECTORY_SEPARATOR, $paths = 'relative') 
+    {
+        $result = array();
+        $cdir = scandir($dir);
+        foreach ($cdir as $key => $value)
+        {
+            if (!in_array($value, array(".", "..")))
+            {
+                if (is_dir($dir . $separator . $value))
+                {
+                    $result[] = array('name'=>$value,'label'=> $this->generate->set_label($value));
+                }
+               
+            }
+        }
+        return $result;
+    } 
+
+    function tools()
+    {
+       $data['menus'] = $this->dir_to_array('./output/');
+       $this->template->js_add('assets/js/generator.js');
+       $this->template->render('generator/tools',$data);
+    }
+
+
+    function create_menu()
+    {
+        $data['menus'] = $this->input->post('fields');
+        
+        $source = $this->parser->parse('template/template', $data, TRUE);
+
+        write_file($this->output . 'template.php', $source);
+
+        //echo json_encode($this->input->post('fields'));
+    }
+
+    
     
     
     

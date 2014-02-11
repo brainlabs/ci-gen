@@ -29,12 +29,12 @@ $(document).ready(function(){
         
         
         $(document).on('click','#build', function(event) {
-		event.preventDefault();
+		        event.preventDefault();
 		
               var  $data = $("#form").serializeArray();
                    $data.push({name : 'table', value :$('select[name=table]').val()});
                 
-		$.ajax({
+		          $.ajax({
                         type     : 'POST',
                         url      : base_url + 'index.php/gens/build',
                         data     : $data ,
@@ -58,6 +58,67 @@ $(document).ready(function(){
                             // console.log(errorThrown);
                         }
                     });
-	});
+	       });
 });
 
+
+// Create Menu
+
+$(document).ready(function () {
+        $(document).on('change','#all',function(){
+            if($(this).prop('checked'))
+            {      
+                $('.validation').prop("checked",true);               
+            }
+            else
+            {
+               $('.validation').prop("checked",false);
+            }
+        });
+
+        $(document).on('change','#menu',function(){
+            if($(this).prop('checked'))
+            {      
+                $('.menu').prop("checked",true);               
+            }
+            else
+            {
+               $('.menu').prop("checked",false);
+            }
+        });
+
+
+        // Send Ajax Create Menu
+
+        $(document).on('click','#create-menu', function(event) {
+            event.preventDefault();
+    
+              var  $data = $(".menu").serializeArray();
+                  
+                
+              $.ajax({
+                        type     : 'POST',
+                        url      : base_url + 'index.php/gens/create_menu',
+                        data     : $data ,
+                        cache    : false,
+                        async    : false,                        
+                        dataType : 'html',
+                        success: function(data){                       
+                        
+                        },
+
+                       complete: function(){
+                          $("#loader").hide();
+                       },
+                       beforeSend : function(){
+                        $("#loader").show();
+                       },
+                       
+                        error: function(xhr, textStatus, errorThrown){
+                             console.log("status : " + errorThrown);
+                            // console.log(errorThrown);
+                        }
+                    });
+         });
+        
+}); // 

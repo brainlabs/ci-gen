@@ -35,6 +35,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="<?php echo site_url('gens'); ?>">Home</a></li>
+            <li><a href="<?php echo site_url('gens/tools'); ?>">Tools</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><img src="<?php echo base_url('assets/img/ajax-loader.gif'); ?>" id="loader" style="display:none;"/></a></li>
@@ -71,21 +72,6 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/parsley.min.js"></script>
 <script type="text/javascript">
     var base_url = "<?php echo base_url(); ?>";
-    
-   $(document).ready(function () {
-        $(document).on('change','#all',function(){
-            if($(this).prop('checked'))
-            {      
-                $('.validation').prop("checked",true);               
-            }
-            else
-            {
-               $('.validation').prop("checked",false);
-            }
-        });
-        
-    });
- 
 </script>
 
 
