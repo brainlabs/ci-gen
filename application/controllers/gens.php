@@ -51,22 +51,13 @@ class gens extends CI_Controller
     function build()
     {
         //$this->generate->build_view();
+       $this->generate->output = APPPATH . 'modules/';
        $msg = $this->generate->run($this->input->post('table'),$this->input->post('fields'));
        
        echo $msg;
     }
     
     
-    function coba()
-    {
-        $data= $this->generate->get_field('agama');
-        foreach ($data as $key)
-        {
-            print_r($key);
-            echo '<br/>';
-        }
-    }
-
 
 
     private function dir_to_array($dir, $separator = DIRECTORY_SEPARATOR, $paths = 'relative') 
@@ -81,7 +72,6 @@ class gens extends CI_Controller
                 {
                     $result[] = array('name'=>$value,'label'=> $this->generate->set_label($value));
                 }
-               
             }
         }
         return $result;
@@ -89,7 +79,7 @@ class gens extends CI_Controller
 
     function tools()
     {
-       $data['menus'] = $this->dir_to_array('./output/');
+       $data['menus'] = $this->dir_to_array(APPPATH . 'modules/');
        $this->template->js_add('assets/js/generator.js');
        $this->template->render('generator/tools',$data);
     }
@@ -97,13 +87,50 @@ class gens extends CI_Controller
 
     function create_menu()
     {
-        $data['menus'] = $this->input->post('fields');
+        if($this->input->post('fields'))
+        {
+            $fields = $this->input->post('fields');
+            $menus = array();
+
+            if($fields)
+            {
+                foreach ($fields as $key => $val)
+                {
+                    $menus[] = array('link'=> $key,'label'=>$val);
+                }
+            }
+            $data = array(
+                'menus'             => $menus,      
+                'php_open'          => '<?php',
+                'php_close'         => '?>',              
+            );
+
+
+
+            $source = $this->parser->parse('template/template', $data, TRUE);
+
+            write_file(APPPATH . 'views/template.php', $source);
+
+            //echo json_encode($this->input->post('fields'));
+            
+             $msg = notify('Menu On Navbar has been created', 'Info');
+            
+        }
+        else 
+        {
         
-        $source = $this->parser->parse('template/template', $data, TRUE);
-
-        write_file($this->output . 'template.php', $source);
-
-        //echo json_encode($this->input->post('fields'));
+            $msg = notify('No data to be created', 'danger','Oops');
+        }
+        
+        echo $msg;
+    }
+    
+    
+    
+    
+    function coba()
+    {
+        echo $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME'];
     }
 
     

@@ -182,7 +182,7 @@ class operator extends MY_Controller
 
     
     /**
-    * Search operator like "$keyword"
+    * Search operator like ""
     *
     */   
     public function search($keyword='',$offset=0)

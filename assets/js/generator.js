@@ -104,7 +104,7 @@ $(document).ready(function () {
                         async    : false,                        
                         dataType : 'html',
                         success: function(data){                       
-                        
+                            $('#content-ajax').append(data);
                         },
 
                        complete: function(){
@@ -120,5 +120,34 @@ $(document).ready(function () {
                         }
                     });
          });
+         
+         
+         
+            
+         
+
+         
+         // Select Relation Table 
+         
+         $(document).on('change','.select',function (){
+            var data = $(this).val();
+            var i = $(".select").index(this) ;
+                i = i +1;
+            console.log(i);
+            if(data == 'SELECT')
+            {                
+                $('#relation' + i).removeClass('hide');   
+                $('#relation' + i).addClass('show');                
+            }
+            else
+            {
+                $('#relation' + i).removeClass('show');
+                $('#relation' + i).addClass('hide'); 
+            }
+            
+         })//
+         
+         
+         
         
 }); // 

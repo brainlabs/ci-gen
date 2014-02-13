@@ -1,34 +1,34 @@
-{php_open} if (!defined('BASEPATH'))  exit('No direct script access allowed');
+<?php if (!defined('BASEPATH'))  exit('No direct script access allowed');
 
 /**
- * Controller {table}
+ * Controller jurnals
  * @created on : {tanggal}
  * @author Daud D. Simbolon <daud.simbolon@gmail.com>
- * Copyright {year}
+ * Copyright 2014
  *
  *
  */
 
 
-class {table} extends MY_Controller
+class jurnals extends MY_Controller
 {
 
     public function __construct() 
     {
         parent::__construct();         
-        $this->load->model('{table}s');
+        $this->load->model('jurnalss');
     }
     
 
     /**
-    * List all data {table}
+    * List all data jurnals
     *
     */
     public function index() 
     {
         $config = array(
-            'base_url'          => site_url('{table}/index/'),
-            'total_rows'        => $this->{table}s->count_all(),
+            'base_url'          => site_url('jurnals/index/'),
+            'total_rows'        => $this->jurnalss->count_all(),
             'per_page'          => $this->config->item('per_page'),
             'uri_segment'       => 3,
             'num_links'         => 9,
@@ -40,36 +40,36 @@ class {table} extends MY_Controller
         $data['total']          = $config['total_rows'];
         $data['pagination']     = $this->pagination->create_links();
         $data['number']         = $this->uri->segment(3);
-        $data['{table}s']       = $this->{table}s->get_all($config['per_page'], $this->uri->segment(3));
-        $this->template->render('{table}/view',$data);
+        $data['jurnalss']       = $this->jurnalss->get_all($config['per_page'], $this->uri->segment(3));
+        $this->template->render('jurnals/view',$data);
 	      
     }
 
     
 
     /**
-    * Call Form to Add  New {table}
+    * Call Form to Add  New jurnals
     *
     */
     public function add() 
     {       
-        $data['{table}'] = $this->{table}s->add();
-        $data['action']  = '{table}/save';
+        $data['jurnals'] = $this->jurnalss->add();
+        $data['action']  = 'jurnals/save';
         
         $this->template->js_add('
                 $(document).ready(function(){
                 // binds form submission and fields to the validation engine
-                $("#form_{table}").parsley();
+                $("#form_jurnals").parsley();
                         });','embed');
       
-        $this->template->render('{table}/form',$data);
+        $this->template->render('jurnals/form',$data);
 
     }
 
     
 
     /**
-    * Call Form to Modify {table}
+    * Call Form to Modify jurnals
     *
     */
     public function edit($id='') 
@@ -77,43 +77,67 @@ class {table} extends MY_Controller
         if ($id != '') 
         {
 
-            $data['{table}'] = $this->{table}s->get_one($id);
-            $data['action']       = '{table}/save/' . $id;           
+            $data['jurnals'] = $this->jurnalss->get_one($id);
+            $data['action']       = 'jurnals/save/' . $id;           
             
            
             $this->template->js_add('
                      $(document).ready(function(){
                     // binds form submission and fields to the validation engine
-                    $("#form_{table}").parsley();
+                    $("#form_jurnals").parsley();
                                     });','embed');
             
-            $this->template->render('{table}/form',$data);
+            $this->template->render('jurnals/form',$data);
             
         }
         else 
         {
-            $this->session->set_flashdata('notif', notify('Data tidak ditemukan','info'));
-            redirect(site_url('{table}'));
+            $this->session->set_flashdata('notif', alert('Data tidak ditemukan','info'));
+            redirect(site_url('jurnals'));
         }
     }
 
 
     
     /**
-    * Save & Update data  {table}
+    * Save & Update data  jurnals
     *
     */
     public function save($id =NULL) 
     {
         // validation config
         $config = array(
-                  {fields_save}
+                  
                     array(
-                        'field' => '{field_name}',
-                        'label' => '{label}',
+                        'field' => 'operator_id',
+                        'label' => 'Operator',
                         'rules' => 'trim|required|xss_clean'
                         ),
-                    {/fields_save}           
+                    
+                    array(
+                        'field' => 'tanggal',
+                        'label' => 'Tanggal',
+                        'rules' => 'trim|required|xss_clean'
+                        ),
+                    
+                    array(
+                        'field' => 'jam',
+                        'label' => 'Jam',
+                        'rules' => 'trim|required|xss_clean'
+                        ),
+                    
+                    array(
+                        'field' => 'uraian',
+                        'label' => 'Uraian',
+                        'rules' => 'trim|required|xss_clean'
+                        ),
+                    
+                    array(
+                        'field' => 'shift',
+                        'label' => 'Shift',
+                        'rules' => 'trim|required|xss_clean'
+                        ),
+                               
                   );
             
         // if id NULL then add new data
@@ -126,9 +150,9 @@ class {table} extends MY_Controller
                       if ($this->input->post()) 
                       {
                           
-                          $this->{table}s->save();
-                          $this->session->set_flashdata('notif', notify('Data berhasil di simpan','success'));
-                          redirect('{table}');
+                          $this->jurnalss->save();
+                          $this->session->set_flashdata('notif', alert('Data berhasil di simpan','success'));
+                          redirect('jurnals');
                       }
                   } 
                   else // If validation incorrect 
@@ -144,9 +168,9 @@ class {table} extends MY_Controller
                 {
                     if ($this->input->post()) 
                     {
-                        $this->{table}s->update($id);
-                        $this->session->set_flashdata('notif', notify('Data berhasil di update','success'));
-                        redirect('{table}');
+                        $this->jurnalss->update($id);
+                        $this->session->set_flashdata('notif', alert('Data berhasil di update','success'));
+                        redirect('jurnals');
                     }
                 } 
                 else // If validation incorrect 
@@ -158,7 +182,7 @@ class {table} extends MY_Controller
 
     
     /**
-    * Search {table} like ""
+    * Search jurnals like ""
     *
     */   
     public function search($keyword='',$offset=0)
@@ -169,8 +193,8 @@ class {table} extends MY_Controller
         }
         
          $config = array(
-            'base_url'          => site_url('{table}/search/' . $keyword),
-            'total_rows'        => $this->{table}s->count_all_search($keyword),
+            'base_url'          => site_url('jurnals/search/' . $keyword),
+            'total_rows'        => $this->jurnalss->count_all_search($keyword),
             'per_page'          => $this->config->item('per_page'),
             'uri_segment'       => 4,
             'num_links'         => 9,
@@ -181,31 +205,31 @@ class {table} extends MY_Controller
         $data['total']          = $config['total_rows'];
         $data['number']         = $this->uri->segment(4);
         $data['pagination']     = $this->pagination->create_links();
-        $data['{table}s']       = $this->{table}s->get_search($config['per_page'], $this->uri->segment(4),$keyword);
+        $data['jurnalss']       = $this->jurnalss->get_search($config['per_page'], $this->uri->segment(4),$keyword);
        
-        $this->template->render('{table}/view',$data);
+        $this->template->render('jurnals/view',$data);
     }
     
     
     /**
-    * Delete {table} by ID
+    * Delete jurnals by ID
     *
     */
     public function delete($id) 
     {        
         if ($id) 
         {
-            $this->{table}s->delete($id);           
-             $this->session->set_flashdata('notif', notify('Data berhasil di hapus','success'));
-             redirect('{table}');
+            $this->jurnalss->delete($id);           
+             $this->session->set_flashdata('notif', alert('Data berhasil di hapus','success'));
+             redirect('jurnals');
         } 
         else 
         {
-            $this->session->set_flashdata('notif', notify('Data tidak ditemukan','warning'));
-            redirect('{table}');
+            $this->session->set_flashdata('notif', alert('Data tidak ditemukan','warning'));
+            redirect('jurnals');
         }       
     }
 
 }
 
-{php_close}
+?>

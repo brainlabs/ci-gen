@@ -4,7 +4,7 @@
             <div class="col-md-8">                
                 <?php
                                   echo anchor(
-                                           site_url('operator/add'),
+                                           site_url('kategori/add'),
                                             '<i class="glyphicon glyphicon-plus"></i>',
                                             'class="btn btn-success btn-sm"'
                                           );
@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-4">
                                            
-                 <?php echo form_open(site_url('operator/search'), 'role="search" class="form"') ;?>       
+                 <?php echo form_open(site_url('kategori/search'), 'role="search" class="form"') ;?>       
                            <div class="input-group pull-right">                      
                                  <input type="text" class="form-control input-sm" placeholder="Cari data" name="q" autocomplete="off"> 
                                  <span class="input-group-btn">
@@ -29,22 +29,14 @@
     
     
     <div class="panel-body">
-         <?php if ($operators) : ?>
+         <?php if ($kategoris) : ?>
           <table class="table table-hover table-condensed">
               
             <thead>
               <tr>
                 <th class="header">#</th>
                 
-                    <th>Nama</th>   
-                
-                    <th>Username</th>   
-                
-                    <th>Password</th>   
-                
-                    <th>Jabatan</th>   
-                
-                    <th>No Telepon</th>   
+                    <th>Nama Kategori</th>   
                 
                 <th class="red header" align="right" width="160">Aksi</th>
               </tr>
@@ -53,24 +45,16 @@
             
             <tbody>
                 <?php $counter =1; ?> 
-               <?php foreach ($operators as $table) : ?>
+               <?php foreach ($kategoris as $table) : ?>
               <tr>
               	<td><?php echo $counter++; ?> </td>
                
-               <td><?php echo $table['nama']; ?></td>
-               
-               <td><?php echo $table['username']; ?></td>
-               
-               <td><?php echo $table['password']; ?></td>
-               
-               <td><?php echo $table['jabatan_id']; ?></td>
-               
-               <td><?php echo $table['no_telepon']; ?></td>
+               <td><?php echo $table['nama_kategori']; ?></td>
                
                 <td>                   
                     <?php
                                   echo anchor(
-                                          site_url('operator/edit/' . $operator['operator_id']),
+                                          site_url('kategori/edit/' . $kategori['kategori_id']),
                                             '<i class="glyphicon glyphicon-edit"></i>',
                                             'class="btn btn-sm btn-success"'
                                           );
@@ -78,7 +62,7 @@
                    
                    <?php
                                   echo anchor(
-                                          site_url('operator/delete/' . $operator['operator_id']),
+                                          site_url('kategori/delete/' . $kategori['kategori_id']),
                                             '<i class="glyphicon glyphicon-trash"></i>',
                                             'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger"'
                                           );
@@ -90,7 +74,7 @@
             </tbody>
           </table>
           <?php else: ?>
-                <?php  echo notify('Data operator belum tersedia','info');?>
+                <?php  echo notify('Data kategori belum tersedia','info');?>
           <?php endif; ?>
     </div>
     
@@ -98,7 +82,7 @@
     <div class="panel-footer">
         <div class="row">
            <div class="col-md-3">
-               operator
+               kategori
                <span class="label label-info">
                     <?php echo $total; ?>
                </span>

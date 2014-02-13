@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/%23%23%23APP-DEV/CI-GEN/application/views/template/coba.php</file>
-            <file>file:/D:/%23%23%23APP-DEV/CI-GEN/application/libraries/Generate.php</file>
-            <file>file:/D:/%23%23%23APP-DEV/CI-GEN/application/controllers/gens.php</file>
+            <file>file:/C:/www/htdocs/ci-gen/assets/js/generator.js</file>
+            <file>file:/C:/www/htdocs/ci-gen/application/controllers/gens.php</file>
+            <file>file:/C:/www/htdocs/ci-gen/application/views/generator/tools.php</file>
+            <file>file:/C:/www/htdocs/ci-gen/application/helpers/notify_helper.php</file>
+            <file>file:/C:/www/htdocs/ci-gen/application/views/generator/index.php</file>
+            <file>file:/C:/www/htdocs/ci-gen/application/libraries/Generate.php</file>
         </group>
     </open-files>
 </project-private>

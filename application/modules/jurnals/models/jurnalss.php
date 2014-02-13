@@ -1,13 +1,13 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Description of $operator
+ * Description of $jurnals
  * @created on : {tanggal}
  * @author DAUD D. SIMBOLON <daud.simbolon@gmail.com>
  */
  
  
-class operators extends CI_Model 
+class jurnalss extends CI_Model 
 {
 
     public function __construct() 
@@ -17,7 +17,7 @@ class operators extends CI_Model
 
 
     /**
-     *  Get All data operator
+     *  Get All data jurnals
      *
      *  @param limit  : Integer
      *  @param offset : Integer
@@ -28,7 +28,7 @@ class operators extends CI_Model
     public function get_all($limit, $offset) 
     {
 
-        $result = $this->db->get('operator', $limit, $offset);
+        $result = $this->db->get('jurnals', $limit, $offset);
 
         if ($result->num_rows() > 0) 
         {
@@ -43,20 +43,20 @@ class operators extends CI_Model
     
 
     /**
-     *  Count All operator
+     *  Count All jurnals
      *    
      *  @return Integer
      *
      */
     public function count_all()
     {
-        $this->db->from('operator');
+        $this->db->from('jurnals');
         return $this->db->count_all_results();
     }
     
 
     /**
-    * Search All operator
+    * Search All jurnals
     *
     *  @param limit   : Integer
     *  @param offset  : Integer
@@ -68,16 +68,10 @@ class operators extends CI_Model
     public function get_search($limit, $offset,$keyword) 
     {
                 
-        $this->db->like('nama', $keyword);  
-                
-        $this->db->like('username', $keyword);  
-                
-        $this->db->like('password', $keyword);  
-                
-        $this->db->like('no_telepon', $keyword);  
+        $this->db->like('uraian', $keyword);  
         
         $this->db->limit($limit, $offset);
-        $result = $this->db->get('operator');
+        $result = $this->db->get('jurnals');
 
         if ($result->num_rows() > 0) 
         {
@@ -95,7 +89,7 @@ class operators extends CI_Model
     
     
     /**
-    * Search All operator
+    * Search All jurnals
     *  @param keyword : mixed
     *
     *  @return Integer
@@ -103,15 +97,9 @@ class operators extends CI_Model
     */
     public function count_all_search($keyword)
     {
-        $this->db->from('operator');        
+        $this->db->from('jurnals');        
                 
-        $this->db->like('nama', $keyword);  
-                
-        $this->db->like('username', $keyword);  
-                
-        $this->db->like('password', $keyword);  
-                
-        $this->db->like('no_telepon', $keyword);  
+        $this->db->like('uraian', $keyword);  
         
         return $this->db->count_all_results();
     }
@@ -121,7 +109,7 @@ class operators extends CI_Model
     
     
     /**
-    *  Get One operator
+    *  Get One jurnals
     *
     *  @param id : Integer
     *
@@ -130,8 +118,8 @@ class operators extends CI_Model
     */
     public function get_one($id) 
     {
-        $this->db->where('{primary_key_tabel}operator_id', $id);
-        $result = $this->db->get('operator');
+        $this->db->where('{primary_key_tabel}jurnal_id', $id);
+        $result = $this->db->get('jurnals');
 
         if ($result->num_rows() == 1) 
         {
@@ -147,7 +135,7 @@ class operators extends CI_Model
     
     
     /**
-    *  Default form data operator
+    *  Default form data jurnals
     *  @return array
     *
     */
@@ -155,15 +143,15 @@ class operators extends CI_Model
     {
         $data = array(
             
-                'nama' => '',
+                'operator_id' => '',
             
-                'username' => '',
+                'tanggal' => '',
             
-                'password' => '',
+                'jam' => '',
             
-                'jabatan_id' => '',
+                'uraian' => '',
             
-                'no_telepon' => '',
+                'shift' => '',
             
         );
 
@@ -184,20 +172,20 @@ class operators extends CI_Model
     {
         $data = array(
         
-            'nama' => $this->input->post('nama', TRUE),
+            'operator_id' => $this->input->post('operator_id', TRUE),
         
-            'username' => $this->input->post('username', TRUE),
+            'tanggal' => $this->input->post('tanggal', TRUE),
         
-            'password' => $this->input->post('password', TRUE),
+            'jam' => $this->input->post('jam', TRUE),
         
-            'jabatan_id' => $this->input->post('jabatan_id', TRUE),
+            'uraian' => $this->input->post('uraian', TRUE),
         
-            'no_telepon' => $this->input->post('no_telepon', TRUE),
+            'shift' => $this->input->post('shift', TRUE),
         
         );
         
         
-        $this->db->insert('operator', $data);
+        $this->db->insert('jurnals', $data);
     }
     
     
@@ -216,21 +204,21 @@ class operators extends CI_Model
     {
         $data = array(
         
-                'nama' => $this->input->post('nama', TRUE),
+                'operator_id' => $this->input->post('operator_id', TRUE),
         
-                'username' => $this->input->post('username', TRUE),
+                'tanggal' => $this->input->post('tanggal', TRUE),
         
-                'password' => $this->input->post('password', TRUE),
+                'jam' => $this->input->post('jam', TRUE),
         
-                'jabatan_id' => $this->input->post('jabatan_id', TRUE),
+                'uraian' => $this->input->post('uraian', TRUE),
         
-                'no_telepon' => $this->input->post('no_telepon', TRUE),
+                'shift' => $this->input->post('shift', TRUE),
         
         );
         
         
-        $this->db->where('operator_id', $id);
-        $this->db->update('operator', $data);
+        $this->db->where('jurnal_id', $id);
+        $this->db->update('jurnals', $data);
     }
 
 
@@ -247,8 +235,8 @@ class operators extends CI_Model
     */
     public function delete($id)
     {       
-        $this->db->where('operator_id', $id);
-        $this->db->delete('operator');
+        $this->db->where('jurnal_id', $id);
+        $this->db->delete('jurnals');
         
     }
 

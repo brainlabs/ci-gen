@@ -34,23 +34,15 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo site_url('gens'); ?>">Dahsboard</a></li>
-            
-            
+            <li><a href="<?php echo site_url('operator'); ?>">Operator</a></li>
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Content <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                
-                    <li><a href="<?php echo site_url('jurnals'); ?>">Jurnals</a></li>
-                
-                    <li><a href="<?php echo site_url('kapal'); ?>">Kapal</a></li>
-                
-                    <li><a href="<?php echo site_url('kategori'); ?>">Kategori</a></li>
-                
-                    <li><a href="<?php echo site_url('operator'); ?>">Operator</a></li>
-                            
+                <li><a href="#">Action</a></li>                
               </ul>
             </li>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>

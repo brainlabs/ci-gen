@@ -13,34 +13,41 @@
 
 if(!function_exists('notify'))
 {
-    function notify($msg,$type = 'info') 
+    function notify($msg,$type = 'info',$judul = '') 
     {
         $tpl = '';
         switch ($type)
         {
             case 'info' :
-                $tpl  = '<div class="alert  alert-info alert-dismissable">';
+                $tpl  = '<div class="alert  alert-info fade">';
                 break;
             
             case 'success' :
-                $tpl  = '<div class="alert  alert-success alert-dismissable">';
+                $tpl  = '<div class="alert  alert-success fade">';
                 break;
             
             case 'warning' :
-                $tpl  = '<div class="alert  alert-warning alert-dismissable">';
+                $tpl  = '<div class="alert  alert-warning fade">';
                 break;
             
             case 'danger' :
-                $tpl  = '<div class="alert  alert-danger alert-dismissable">';
+                $tpl  = '<div class="alert  alert-danger fade">';
                 break;
             default :
-                 $tpl  = '<div class="alert  alert-info alert-dismissable">';
+                 $tpl  = '<div class="alert  alert-info fade>';
                 break;                
         }
         
         
-        $tpl .= '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
-        $tpl .= '<strong> '. ucwords($type) .'! </strong>' . $msg;
+        $tpl .= '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+        $tpl .= '<strong> '. (trim($judul) !='' ? ucwords($judul) : ucwords($type)) .' ! </strong> ' . $msg;
+        $tpl .= '<script>
+                
+                $(document).ready(function(){
+                     $(".alert").delay(4000).addClass("in").fadeOut("slow");
+                });
+                
+                </script>';
         $tpl .= '</div>';
         
         return $tpl;

@@ -34,8 +34,17 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="{php_open} echo site_url('operator'); {php_close}">Operator</a></li>
+            <li><a href="{php_open} echo site_url('gens'); {php_close}">Dahsboard</a></li>
             
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Content <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                {menus}
+                    <li><a href="{php_open} echo site_url('{link}'); {php_close}">{label}</a></li>
+                {/menus}            
+              </ul>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

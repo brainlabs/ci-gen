@@ -72,7 +72,7 @@
                            'jabatan_id',
                            $jabatan,  
                            set_value('jabatan_id',$operator['jabatan_id']),
-                           'class="input-sm  required"  id="jabatan_id"'
+                           'class="input-sm "  id="jabatan_id"'
                            );             
                   ?>
                   <p class="help-block "><?php echo form_error('jabatan_id');?></p>
@@ -87,7 +87,7 @@
                                 array(
                                  'name'         => 'no_telepon',
                                  'id'           => 'no_telepon',                       
-                                 'class'        => 'form-control input-sm  required',
+                                 'class'        => 'form-control input-sm ',
                                  'placeholder'  => 'No Telepon',
                                  ),
                                  set_value('no_telepon',$operator['no_telepon'])

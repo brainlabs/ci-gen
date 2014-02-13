@@ -91,13 +91,14 @@ class Generate
         }
     }
     
+    
   
-	/**
-	 * Get Field From table to create View
-	 * @param $table table name @string
-	 * @return @Mixed
-	 * @access Public
-	 */
+    /**
+     * Get Field From table to create View
+     * @param $table table name @string
+     * @return @Mixed
+     * @access Public
+     */
     public function generate_form($table = null)
     {
         $this->ci->table->set_template($this->tpl); 
@@ -109,7 +110,7 @@ class Generate
         {
             $field = $this->get_field($table);
             
-            
+            $c = 0;
             
             foreach ($field as $label)
             {
@@ -126,12 +127,21 @@ class Generate
                 // chek 
                if(!$label->primary_key)
                {
-                    if($label->type !== 'timestamp')
+                   if($label->type !== 'timestamp')
                    {
                    
                         $data[] = array(
                                 $label->name,
-                                $this->_dropdown('fields['. $label->name .'][type]'),
+                               '<div class="form-group">' . $this->_dropdown('fields['. $label->name .'][type]') . '</div>' .
+                               '<div class="form-group hide" id="relation'.$c.'">' .
+                                form_label('Relation Tabel') .
+                                form_dropdown(
+                                        'fields['. $label->name .'][table]',
+                                        $this->get_table($table),
+                                        '',
+                                        'class="form-control input-sm"') .
+                                '</div>'
+                                ,
                                 form_checkbox(
                                         array(
                                             'name'=> 'fields['. $label->name .'][validation]',
@@ -155,6 +165,9 @@ class Generate
                          );
                    }
                }
+               
+               
+               $c++;
             }
             
             return $this->ci->table->generate($data);
@@ -180,7 +193,7 @@ class Generate
             );
         
         
-            return form_dropdown($name,$data,'text','class="form-control input-sm"');
+            return form_dropdown($name,$data,'','class="form-control input-sm select"');
     }
     
     
@@ -488,11 +501,19 @@ class Generate
                 @mkdir($this->output . $table .'/views',DIR_WRITE_MODE,TRUE);
             }
             
-            $this->build_controller($table);
-            $this->build_model($table);
-            $this->build_form($table, $post_field);
-            $this->build_view($table);
-            $msg = "Successfully to generate code of table $table";
+            if(is_dir($this->output))
+            {
+            
+                $this->build_controller($table);
+                $this->build_model($table);
+                $this->build_form($table, $post_field);
+                $this->build_view($table);
+                $msg = "Successfully to generate code of table $table";
+            }
+            else 
+            {
+                $msg = "Not Found Directory <strong>" . $this->output;
+            }
         }
         else
         {
