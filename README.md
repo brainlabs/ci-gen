@@ -1,7 +1,7 @@
 ci-gen
 ======
 
-Codeigniter CRUD Code Generator With Bootstrap 3.1.0, parsley validation
+Codeigniter CRUD Code Generator With Bootstrap 3.1.1, parsley 2.0 validation, easy to use & Simple
 
 Support Modules
 

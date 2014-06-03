@@ -15,7 +15,7 @@
     <title>Home</title>
     <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/main.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/parley/validation.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/parley/parsley.css" rel="stylesheet" type="text/css">
     
 </head>
 
@@ -33,9 +33,10 @@
             <a class="navbar-brand" href="<?php echo site_url(); ?>">Brain Labs</a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="<?php echo site_url('gens'); ?>">Home</a></li>
-            <li><a href="<?php echo site_url('gens/tools'); ?>">Tools</a></li>
+          <ul class="nav navbar-nav">              
+            <li><a href="<?php echo site_url('dashboard'); ?>">Dashboard</a></li>  
+            <li><a href="<?php echo site_url('builder'); ?>">Builder</a></li> 
+            <li><a href="<?php echo site_url('builder/tools'); ?>">Tools</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><img src="<?php echo base_url('assets/img/ajax-loader.gif'); ?>" id="loader" style="display:none;"/></a></li>
@@ -60,7 +61,7 @@
 
   
 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
 
 
 <!--[if lt IE 9]>
@@ -68,7 +69,7 @@
 <![endif]-->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/holder.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/messages.id.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/i18n/id.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/parsley.min.js"></script>
 <script type="text/javascript">
     var base_url = "<?php echo base_url(); ?>";

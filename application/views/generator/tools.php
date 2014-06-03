@@ -15,6 +15,7 @@
 		</thead>
 		<tbody>			
 			<?php foreach ($menus as $key ) : ?>
+                        <?php if($key['name'] !='dashboard' && $key['name'] !='builder') : ?>
 			<tr>
 				<td><?php echo $key['label']; ?></td>
 				<td>
@@ -27,6 +28,7 @@
 					?>
 				</td>
 			</tr>
+                        <?php endif; ?>
 			<?php endforeach; ?>
 		</tbody>
 	</table>
@@ -37,11 +39,11 @@
 			echo form_button(
 							array(
 							    'name'  	=> 'button',
-							    'id' 		=> 'create-menu',
+							    'id' 	=> 'create-menu',
 							    'value' 	=> 'true',
 							    'type'  	=> 'button',
 							    'content' 	=> 'Create Menu',
-							    'class'		=> 'btn btn-sm btn-primary'
+							    'class'	=> 'btn btn-sm btn-primary'
 							    )
 							);
 		?>

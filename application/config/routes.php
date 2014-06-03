@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "gens";
+$route['default_controller'] = "builder";
 $route['404_override'] = '';
 
 

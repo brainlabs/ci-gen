@@ -189,7 +189,8 @@ class Generate
             'RADIO'     =>'RADIO',
             'PASSWORD'  =>'PASSWORD',
             'SELECT'    =>'SELECT',
-            'TEXTAREA'  =>'TEXTAREA',            
+            'TEXTAREA'  =>'TEXTAREA',
+			'FILE'  	=>'FILE',    
             );
         
         
@@ -357,7 +358,7 @@ class Generate
                            '$key',
                            $$replace,  
                            set_value('$key',\${table}['$key']),
-                           'class=\"input-sm $validation\"  id=\"$key\"'
+                           'class=\"form-control input-sm $validation\"  id=\"$key\"'
                            );";
                    break;
                
@@ -366,14 +367,26 @@ class Generate
                             array(
                                 'id'            =>'$key',
                                 'name'          =>'$key',
-                                'cols'          =>'$key',
+                                'rows'          =>'3',
                                 'class'         =>'form-control input-sm $validation',
                                 'placeholder'   =>'". $this->set_label($key) ."',
                                 ),
                             set_value('$key',\${table}['$key'])                           
                             );";
                    break;
-               
+				   
+               case 'FILE' :
+			    $input = "form_upload(
+                                array(
+                                 'name'         => '$key',
+                                 'id'           => '$key',                       
+                                 'style'        => 'left: -182.667px; top: 20px;', 
+                                 'title         => 'Pilih File.....'
+                                 )
+                                
+                           );";
+                   break;
+				   
                default :
                    $input = '';
                

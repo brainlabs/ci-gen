@@ -6,7 +6,7 @@
     <div class="panel-heading"><i class="glyphicon glyphicon-signal"></i> </div>
      
       <div class="panel-body">
-         {php_open} echo form_open(site_url('{table}'),'role="form" class="form-horizontal" id="form_{table}" parsley-validate'); {php_close}
+         {php_open} echo form_open(site_url('{table}/' . $action),'role="form" class="form-horizontal" id="form_{table}" parsley-validate'); {php_close}
                 
          
             {forms}           

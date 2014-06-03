@@ -111,7 +111,7 @@ class {table} extends MY_Controller
                     array(
                         'field' => '{field_name}',
                         'label' => '{label}',
-                        'rules' => 'trim|required|xss_clean'
+                        'rules' => 'trim|xss_clean'
                         ),
                     {/fields_save}           
                   );
@@ -161,18 +161,22 @@ class {table} extends MY_Controller
     * Search {table} like ""
     *
     */   
-    public function search($keyword='',$offset=0)
+    public function search()
     {
         if($this->input->post('q'))
         {
             $keyword = $this->input->post('q');
+            
+            $this->session->set_userdata(
+                        array('keyword' => $this->input->post('q',TRUE))
+                    );
         }
         
          $config = array(
-            'base_url'          => site_url('{table}/search/' . $keyword),
-            'total_rows'        => $this->{table}s->count_all_search($keyword),
+            'base_url'          => site_url('{table}/search/'),
+            'total_rows'        => $this->{table}s->count_all_search(),
             'per_page'          => $this->config->item('per_page'),
-            'uri_segment'       => 4,
+            'uri_segment'       => 3,
             'num_links'         => 9,
             'use_page_numbers'  => FALSE
         );
@@ -181,7 +185,7 @@ class {table} extends MY_Controller
         $data['total']          = $config['total_rows'];
         $data['number']         = $this->uri->segment(4);
         $data['pagination']     = $this->pagination->create_links();
-        $data['{table}s']       = $this->{table}s->get_search($config['per_page'], $this->uri->segment(4),$keyword);
+        $data['{table}s']       = $this->{table}s->get_search($config['per_page'], $this->uri->segment(3);
        
         $this->template->render('{table}/view',$data);
     }

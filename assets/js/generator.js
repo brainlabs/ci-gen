@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 		$.ajax({
                         type     : 'POST',
-                        url      : base_url + 'index.php/gens/write',
+                        url      : base_url + 'index.php/builder/write',
                         data     : $("#generator").serialize(),
                         cache    : false,
                         async    : false,
@@ -28,6 +28,34 @@ $(document).ready(function(){
 	});
         
         
+        $("#table").change(function (event){
+           event.preventDefault();		
+
+		$.ajax({
+                        type     : 'POST',
+                        url      : base_url + 'index.php/builder/write',
+                        data     : $("#generator").serialize(),
+                        cache    : false,
+                        async    : false,
+                        //contentType: 'application/json;',
+                        dataType : 'json',
+                        success: function(data){                       
+                           $("#proses").html(data);                           
+                        },
+                        complete: function(){
+                            $("#loader").hide();
+                       },
+                       beforeSend : function(){
+                        $("#loader").show();
+                       },
+                        error: function(xhr, textStatus, errorThrown){
+                             console.log("status : " + errorThrown);
+                            // console.log(errorThrown);
+                        }
+                    }); 
+        });
+        
+        
         $(document).on('click','#build', function(event) {
 		        event.preventDefault();
 		
@@ -36,18 +64,22 @@ $(document).ready(function(){
                 
 		          $.ajax({
                         type     : 'POST',
-                        url      : base_url + 'index.php/gens/build',
+                        url      : base_url + 'index.php/builder/build',
                         data     : $data ,
                         cache    : false,
                         async    : false,
                         //contentType: 'application/json;',
                         dataType : 'html',
                         success: function(data){                       
-                        
+                             $('#proses').prepend(data); 
                         },
 
                        complete: function(){
                           $("#loader").hide();
+                          $('#form').delay(1000).fadeOut(200, function(){
+                                $(this).remove();
+                            });
+                          
                        },
                        beforeSend : function(){
                         $("#loader").show();
@@ -98,7 +130,7 @@ $(document).ready(function () {
                 
               $.ajax({
                         type     : 'POST',
-                        url      : base_url + 'index.php/gens/create_menu',
+                        url      : base_url + 'index.php/builder/create_menu',
                         data     : $data ,
                         cache    : false,
                         async    : false,                        

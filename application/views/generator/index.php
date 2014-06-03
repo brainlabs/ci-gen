@@ -12,7 +12,7 @@
                     'table',
                     $table,
                     set_value('table'),
-                    'class="form-control input-sm"');
+                    'class="form-control input-sm" id="table"');
         ?>
     </div>
     

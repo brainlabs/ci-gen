@@ -65,8 +65,9 @@ class {table}s extends CI_Model
     *  @return array
     *
     */
-    public function get_search($limit, $offset,$keyword) 
+    public function get_search($limit, $offset) 
     {
+        $keyword = $this->session->userdata('keyword');
         {fields_search}        
         $this->db->like('{field_name}', $keyword);  
         {/fields_search}
@@ -95,8 +96,9 @@ class {table}s extends CI_Model
     *  @return Integer
     *
     */
-    public function count_all_search($keyword)
+    public function count_all_search()
     {
+        $keyword = $this->session->userdata('keyword');
         $this->db->from('{table}');        
         {fields_search}        
         $this->db->like('{field_name}', $keyword);  
@@ -118,7 +120,7 @@ class {table}s extends CI_Model
     */
     public function get_one($id) 
     {
-        $this->db->where('{primary_key_tabel}{primary_key}', $id);
+        $this->db->where('{primary_key}', $id);
         $result = $this->db->get('{table}');
 
         if ($result->num_rows() == 1) 

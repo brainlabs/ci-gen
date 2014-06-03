@@ -5,7 +5,7 @@
  * @created on : 22 Jan 14, 0:05:21
  * @author DAUD D. SIMBOLON <daud.simbolon@gmail.com>
  */
-class gens extends CI_Controller
+class builder extends CI_Controller
 {
     function __construct() 
     {
@@ -54,6 +54,8 @@ class gens extends CI_Controller
        $this->generate->output = APPPATH . 'modules/';
        $msg = $this->generate->run($this->input->post('table'),$this->input->post('fields'));
        
+       $msg = notify($msg, 'Info');
+       
        echo $msg;
     }
     
@@ -95,7 +97,7 @@ class gens extends CI_Controller
             if($fields)
             {
                 foreach ($fields as $key => $val)
-                {
+                {                    
                     $menus[] = array('link'=> $key,'label'=>$val);
                 }
             }
