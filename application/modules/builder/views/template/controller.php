@@ -185,7 +185,7 @@ class {table} extends MY_Controller
         $data['total']          = $config['total_rows'];
         $data['number']         = $this->uri->segment(4);
         $data['pagination']     = $this->pagination->create_links();
-        $data['{table}s']       = $this->{table}s->get_search($config['per_page'], $this->uri->segment(3);
+        $data['{table}s']       = $this->{table}s->get_search($config['per_page'], $this->uri->segment(3));
        
         $this->template->render('{table}/view',$data);
     }

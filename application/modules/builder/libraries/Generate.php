@@ -190,7 +190,7 @@ class Generate
             'PASSWORD'  =>'PASSWORD',
             'SELECT'    =>'SELECT',
             'TEXTAREA'  =>'TEXTAREA',
-			'FILE'  	=>'FILE',    
+            'FILE'  	=>'FILE',    
             );
         
         
@@ -297,10 +297,12 @@ class Generate
            if(isset($val['validation']))
            {
                $validation =  " required";
+               $required  = '&nbsp;<span class="required-input">*</span>';
            }
            else
            {
                $validation = '';
+               $required  = '';
            }
            
           $replace = preg_replace('/_id$/', '', $key);
@@ -381,7 +383,7 @@ class Generate
                                  'name'         => '$key',
                                  'id'           => '$key',                       
                                  'style'        => 'left: -182.667px; top: 20px;', 
-                                 'title         => 'Pilih File.....'
+                                 'title'         => 'Pilih File.....'
                                  )
                                 
                            );";
@@ -398,7 +400,7 @@ class Generate
                
                $form[] = array (
                             'input' => $input,
-                            'label' => $this->set_label($key),
+                            'label' => $this->set_label($key) . $required,
                             'field' => $key
                         );
                

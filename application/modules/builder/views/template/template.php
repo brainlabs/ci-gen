@@ -16,7 +16,7 @@
     <link href="{php_open} echo base_url(); {php_close}assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="{php_open} echo base_url(); {php_close}assets/css/main.css" rel="stylesheet" type="text/css">
     <link href="{php_open} echo base_url(); {php_close}assets/parsley/parsley.css" rel="stylesheet" type="text/css">
-    
+    <script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/js/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>
@@ -67,7 +67,7 @@
 
   
 
-<script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/js/jquery-2.1.1.min.js"></script>
+
 
 
 <!--[if lt IE 9]>
@@ -75,7 +75,7 @@
 <![endif]-->
 <script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/js/holder.js"></script>
-<script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/js/bootstrap-confirmation.js"></script>
+<script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/js/bootstrap.file-input.js"></script>
 <script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/parsley/parsley.min.js"></script>
 <script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/parsley/i18n/id.js"></script>
 <script type="text/javascript">

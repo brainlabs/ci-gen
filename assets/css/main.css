@@ -9,3 +9,8 @@
 body {
     padding-top: 70px;
 }
+
+
+.required-input{
+    color: #f53535;
+}

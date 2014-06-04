@@ -129,14 +129,7 @@ class builder extends CI_Controller
     
     
     
-    
-    function coba()
-    {
-        echo $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME'];
-    }
-
-    
-    
+ 
     
     
 }
