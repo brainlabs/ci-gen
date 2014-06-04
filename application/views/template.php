@@ -14,6 +14,7 @@
    
     <title>Home</title>
     <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/main.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/parsley/parsley.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
@@ -34,24 +35,11 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo site_url('dashboard'); ?>">Dahsboard</a></li>
-            <li><a href="<?php echo site_url('builder'); ?>">Builder</a></li>
-            <li><a href="<?php echo site_url('builder/tools'); ?>">Tools</a></li>
+            <li><a href="<?php echo site_url('dashboard'); ?>"><i class="fa fa-windows"></i> Dahsboard</a></li>
+            <li><a href="<?php echo site_url('builder'); ?>"><i class="fa fa-code"></i> Builder</a></li>
+            <li><a href="<?php echo site_url('builder/tools'); ?>"><i class="fa fa-wrench"></i> Tools</a></li>
             
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Content <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                
-                    <li><a href="<?php echo site_url('instansi'); ?>">Instansi</a></li>
-                
-                    <li><a href="<?php echo site_url('pegawai'); ?>">Pegawai</a></li>
-                
-                    <li><a href="<?php echo site_url('ref_disposisi'); ?>">Ref Disposisi</a></li>
-                
-                    <li><a href="<?php echo site_url('surat_masuk'); ?>">Surat Masuk</a></li>
-                            
-              </ul>
-            </li>
+            
           </ul>
         </div><!--/.nav-collapse -->
       </div>

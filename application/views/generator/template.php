@@ -14,6 +14,7 @@
    
     <title>Home</title>
     <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/main.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/parley/parsley.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
@@ -34,9 +35,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">              
-            <li><a href="<?php echo site_url('dashboard'); ?>">Dashboard</a></li>  
-            <li><a href="<?php echo site_url('builder'); ?>">Builder</a></li> 
-            <li><a href="<?php echo site_url('builder/tools'); ?>">Tools</a></li>
+              <li><a href="<?php echo site_url('dashboard'); ?>"><i class="fa fa-windows"></i> Dashboard</a></li>  
+            <li><a href="<?php echo site_url('builder'); ?>"><i class="fa fa-code"></i> Builder</a></li> 
+            <li><a href="<?php echo site_url('builder/tools'); ?>"><i class="fa fa-wrench"></i> Tools</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><img src="<?php echo base_url('assets/img/ajax-loader.gif'); ?>" id="loader" style="display:none;"/></a></li>

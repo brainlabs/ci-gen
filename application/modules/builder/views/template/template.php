@@ -14,6 +14,7 @@
    
     <title>Home</title>
     <link href="{php_open} echo base_url(); {php_close}assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="{php_open} echo base_url(); {php_close}assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="{php_open} echo base_url(); {php_close}assets/css/main.css" rel="stylesheet" type="text/css">
     <link href="{php_open} echo base_url(); {php_close}assets/parsley/parsley.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/js/jquery-2.1.1.min.js"></script>
@@ -34,12 +35,12 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="{php_open} echo site_url('dashboard'); {php_close}">Dahsboard</a></li>
-            <li><a href="{php_open} echo site_url('builder'); {php_close}">Builder</a></li>
-            <li><a href="{php_open} echo site_url('builder/tools'); {php_close}">Tools</a></li>
+            <li><a href="{php_open} echo site_url('dashboard'); {php_close}"><i class="fa fa-windows"></i> Dahsboard</a></li>
+            <li><a href="{php_open} echo site_url('builder'); {php_close}"><i class="fa fa-code"></i> Builder</a></li>
+            <li><a href="{php_open} echo site_url('builder/tools'); {php_close}"><i class="fa fa-wrench"></i> Tools</a></li>
             
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Content <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-signal"></i> Content <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 {menus}
                     <li><a href="{php_open} echo site_url('{link}'); {php_close}">{label}</a></li>
