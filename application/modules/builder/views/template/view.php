@@ -44,10 +44,10 @@
             
             
             <tbody>
-                {php_open} $counter =1; {php_close} 
+             
                {php_open} foreach (${table}s as ${table}) : {php_close}
               <tr>
-              	<td>{php_open} echo $counter++; {php_close} </td>
+              	<td>{php_open} echo $number++;; {php_close} </td>
                {fields}
                <td>{php_open} echo ${table}['{field_name}']; {php_close}</td>
                {/fields}

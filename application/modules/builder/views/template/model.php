@@ -1,9 +1,10 @@
 {php_open} if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Description of ${table}
+ * Description of {table}
  * @created on : {tanggal}
  * @author DAUD D. SIMBOLON <daud.simbolon@gmail.com>
+ * Copyright {year}    
  */
  
  
@@ -91,9 +92,9 @@ class {table}s extends CI_Model
     
     /**
     * Search All {table}
-    *  @param keyword : mixed
+    * @param keyword : mixed
     *
-    *  @return Integer
+    * @return Integer
     *
     */
     public function count_all_search()
@@ -162,11 +163,11 @@ class {table}s extends CI_Model
     *  @return void
     *
     */
-    public function save($id = NULL) 
+    public function save() 
     {
         $data = array(
         {fields_save}
-            '{field_name}' => $this->input->post('{field_name}', TRUE),
+            '{field_name}' => strip_tags($this->input->post('{field_name}', TRUE)),
         {/fields_save}
         );
         
@@ -190,7 +191,7 @@ class {table}s extends CI_Model
     {
         $data = array(
         {fields_update}
-                '{field_name}' => $this->input->post('{field_name}', TRUE),
+                '{field_name}' => strip_tags($this->input->post('{field_name}', TRUE)),
         {/fields_update}
         );
         

@@ -39,7 +39,7 @@ class {table} extends MY_Controller
         $this->pagination->initialize($config);
         $data['total']          = $config['total_rows'];
         $data['pagination']     = $this->pagination->create_links();
-        $data['number']         = $this->uri->segment(3);
+        $data['number']         = (int)$this->uri->segment(3) +1;
         $data['{table}s']       = $this->{table}s->get_all($config['per_page'], $this->uri->segment(3));
         $this->template->render('{table}/view',$data);
 	      
@@ -111,7 +111,7 @@ class {table} extends MY_Controller
                     array(
                         'field' => '{field_name}',
                         'label' => '{label}',
-                        'rules' => 'trim|xss_clean'
+                        'rules' => 'trim|xss_clean{rules}'
                         ),
                     {/fields_save}           
                   );
@@ -183,7 +183,7 @@ class {table} extends MY_Controller
         
         $this->pagination->initialize($config);
         $data['total']          = $config['total_rows'];
-        $data['number']         = $this->uri->segment(4);
+        $data['number']         = (int)$this->uri->segment(3) +1;
         $data['pagination']     = $this->pagination->create_links();
         $data['{table}s']       = $this->{table}s->get_search($config['per_page'], $this->uri->segment(3));
        

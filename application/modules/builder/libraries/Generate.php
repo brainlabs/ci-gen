@@ -14,6 +14,7 @@ class Generate
     private $ci ;
     public  $output ='./output/';
     
+    private $rules;
 
 
 
@@ -48,10 +49,21 @@ class Generate
 
     function year()
     {
-        return date('Y');
+        return date('Y');  
     }
 	
-	// Default Template PHP TAGS
+    
+    /*
+     * Date Now
+     * 
+     */
+    
+    function _now()
+    {
+        return date('l, d-M-Y H:i:s');
+    }
+
+    // Default Template PHP TAGS
     private function php_tags()
     {
         return array(
@@ -124,7 +136,7 @@ class Generate
                     $show = form_checkbox('fields['. $label->name .'][show]', 1,true);
                 }
                 
-                // chek 
+                // chek field type
                if(!$label->primary_key)
                {
                    if($label->type !== 'timestamp')
@@ -201,12 +213,12 @@ class Generate
        
     
  
-	/**
-	 * Set Field Label Like Attribute Label on Field Name
-	 * @param $text field name @string
-	 * @return @Text
-	 * @access private
-	 */
+    /**
+     * Set Field Label Like Attribute Label on Field Name
+     * @param $text field name @string
+     * @return @Text
+     * @access private
+     */
     public function set_label($text = NULL)
     {
         if($text)
@@ -225,25 +237,27 @@ class Generate
     
         
      
-	/**
-	 * Get Field Name Form table & Set Field Label 
-	 * @param $table table name @string
-	 * @return @Array
-	 * @access private
-	 */
+    /**
+     * Get Field Name Form table & Set Field Label 
+     * @param $table table name @string
+     * @return @Array
+     * @access private
+     */
+    /*
     private function get_field_label ($table = NULL)
     {
         $label_name     = array();
         $field_name     = array();
         $field_search   = array();
         $primary_key    = '';
-        $fields = $this->get_field($table);
+        $fields         = $this->get_field($table);
         
         if($fields)
         {
             foreach ($fields as $field)
             {
-				// get field if not primary key & if type not timestamp
+		               
+                // get field if not primary key & if type not timestamp
                 if(!$field->primary_key && $field->type !='timestamp')
                 {
 					
@@ -257,7 +271,7 @@ class Generate
                     $primary_key = $field->name;
                 }
                 
-				// Get field only type Text & Varchar, use to query searching 
+		// Get field only type Text & Varchar, use to query searching 
                 if($field->type == 'varchar' || $field->type == 'text')
                 {
                     $field_search[] = array('field_name' => $field->name);
@@ -271,25 +285,102 @@ class Generate
             'fields'        => $field_name,
             'fields_search' => $field_search,
             'primary_key'   => $primary_key
+            
            );
     }
+     * 
+     */
+    
+    /*
+     * Get Field Primary Key @ Field Search
+     * 
+     */
+    private function get_primary_key_search($table = null)
+    {
+        $fields         = $this->get_field($table);
+        $primary_key    = '';
+        $fields_search  = array();
+        if($fields)
+        {
+            foreach ($fields as $field)
+            { 
+		// get Primary key field
+                if($field->primary_key)
+                {
+                    $primary_key = $field->name;
+                }                
+		
+                // Get field only type Text & Varchar, use to query searching 
+                if($field->type == 'varchar' || $field->type == 'text')
+                {
+                    $fields_search[] = array('field_name' => $field->name);
+                }
+            }
+        }
+        
+        return array('primary_key' => $primary_key,'field_search'=> $fields_search);
+    }  
+    
+    
+   private function get_field_label ($table = NULL,$post_field)
+   {
+       foreach ($post_field as $field => $val)
+       {
+           // If Checkbox Required checked
+           if(isset($val['validation']))
+           {
+              $validation =  "|required";
+           }
+           else
+           {
+               $validation  = '';   
+           }
+           
+           
+           $field_name[] = array(
+                            'field_name'    => $field,
+                            'label'         => $this->set_label($field),
+                            'rules'         => $validation
+                            );
+           $label_name[] = array('label_name' => $this->set_label($field));
+           
+       }
+       
+       $primary_search = $this->get_primary_key_search($table);
+       
+       return array(
+            'labels'        => $label_name,
+            'fields'        => $field_name,
+            'fields_search' => $primary_search['field_search'],
+            'primary_key'   => $primary_search['primary_key']
+            
+           );
+   }
+
+
+   
+
+
     
     
     
     
     /**
-	 * Write Form
-	 * @param $table table name @string
-	 * @param $post_field get post field @Mixed 
-	 * @return Void
-	 * @access private
-	 */
+     * Write Form
+     * @param $table table name @string
+     * @param $post_field get post field @Mixed 
+     * @return Void
+     * @access private
+     */
     private function build_form($table,$post_field)
     {
        
-       $fields = $post_field;
-       $table_name = $table;
-       $form = array();
+       $fields      = $post_field;
+       $table_name  = $table;
+       $form        = array();
+       
+       
+       
        foreach ($fields as $key => $val)
        {
            
@@ -297,18 +388,20 @@ class Generate
            if(isset($val['validation']))
            {
                $validation =  " required";
-               $required  = '&nbsp;<span class="required-input">*</span>';
+               $required  = ' <span class="required-input">*</span>';
+               
            }
            else
            {
-               $validation = '';
-               $required  = '';
+               $validation  = '';
+               $required    = '';
+              
            }
            
           $replace = preg_replace('/_id$/', '', $key);
            
 			
-			// Get Type Input Field from POST Field
+	   // Get Type Input Field from POST Field
            switch ($val['type'])
            {
                case 'INPUT' :
@@ -423,14 +516,14 @@ class Generate
     
     
     /**
-	 * Write Model
-	 * @param $table table name @string
-	 * @return Void
-	 * @access private
-	 */
-    private function build_model($table =NULL)
+     * Write Model
+     * @param $table table name @string
+     * @return Void
+     * @access private
+     */
+    private function build_model($table =NULL,$post_field)
     {
-        $all                    = $this->get_field_label($table);
+        $all                    = $this->get_field_label($table,$post_field);
         $data                   = $this->php_tags();
         $data['fields_add']     = $all['fields'];
         $data['fields_save']    = $all['fields'];
@@ -440,6 +533,7 @@ class Generate
         $data['labels']         = $all['labels'];
         $data['table']          = $table;
         $data['year']           = $this->year();
+        $data['tanggal']        = $this->_now();
         $source = $this->ci->parser->parse('template/model', $data, TRUE);
         
         write_file($this->output . $table . '/models/'. $table .'s.php', $source);
@@ -447,15 +541,15 @@ class Generate
     }
     
     
-	/**
-	 * Write Controller
-	 * @param $table table name @string
-	 * @return Void
-	 * @access private
-	 */
-    private function build_controller($table =NULL)
+    /**
+     * Write Controller
+     * @param $table table name @string
+     * @return Void
+     * @access private
+     */
+    private function build_controller($table =NULL,$post_field)
     {
-        $all 					= $this->get_field_label($table);
+        $all 			= $this->get_field_label($table,$post_field);
         $data                   = $this->php_tags();
         $data['fields_add']     = $all['fields'];
         $data['fields_save']    = $all['fields'];
@@ -463,6 +557,8 @@ class Generate
         $data['labels']         = $all['labels'];
         $data['table']          = $table;
         $data['year']           = $this->year();
+        $data['tanggal']        = $this->_now();
+        
         $source = $this->ci->parser->parse('template/controller.php', $data, TRUE);
         
         write_file($this->output . $table . '/controllers/'. $table .'.php', $source);
@@ -471,15 +567,15 @@ class Generate
     
     
 	
-	/**
-	 * Write View List
-	 * @param $table table name
-	 * @return Void
-	 * @access private
-	 */
-    private function build_view($table =null)
+    /**
+     * Write View List
+     * @param $table table name
+     * @return Void
+     * @access private
+     */
+    private function build_view($table =null,$post_field)
     {        
-        $all                = $this->get_field_label($table);
+        $all                = $this->get_field_label($table, $post_field);
         $data               = $this->php_tags();
         $data['fields']     = $all['fields'];
         $data['labels']     = $all['labels'];
@@ -490,7 +586,6 @@ class Generate
 
         write_file($this->output . $table . '/views/view.php', $source);
         
-        
     }
 
     
@@ -498,12 +593,12 @@ class Generate
 
 	
     /**
-	 * Run Generate CRUD Code
-	 * @param $table table name @String
-	 * @param $post_field get post field @Mixed 
-	 * @return $msg @String
-	 * @access Public
-	 */
+     * Run Generate CRUD Code
+     * @param $table table name @String
+     * @param $post_field get post field @Mixed 
+     * @return $msg @String
+     * @access Public
+     */
     public function run($table = null,$post_field )
     {
         if($table)
@@ -519,10 +614,13 @@ class Generate
             if(is_dir($this->output))
             {
             
-                $this->build_controller($table);
-                $this->build_model($table);
                 $this->build_form($table, $post_field);
-                $this->build_view($table);
+                
+                $this->build_controller($table, $post_field);
+                $this->build_model($table, $post_field);
+                
+                
+                $this->build_view($table, $post_field);
                 $msg = "Successfully to generate code of table $table";
             }
             else 

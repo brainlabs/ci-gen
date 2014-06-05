@@ -1,4 +1,0 @@
-
-{form}
-{field}
-{/form}
