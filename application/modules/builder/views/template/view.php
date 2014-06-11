@@ -6,7 +6,7 @@
                                   echo anchor(
                                            site_url('{table}/add'),
                                             '<i class="glyphicon glyphicon-plus"></i>',
-                                            'class="btn btn-success btn-sm"'
+                                            'class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="right" title="Tambah Data"'
                                           );
                  {php_close}
                 
@@ -56,7 +56,7 @@
                                   echo anchor(
                                           site_url('{table}/edit/' . ${table}['{primary_key}']),
                                             '<i class="glyphicon glyphicon-edit"></i>',
-                                            'class="btn btn-sm btn-success"'
+                                            'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="right" title="Edit Data"'
                                           );
                    {php_close}
                    
@@ -64,7 +64,7 @@
                                   echo anchor(
                                           site_url('{table}/delete/' . ${table}['{primary_key}']),
                                             '<i class="glyphicon glyphicon-trash"></i>',
-                                            'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger"'
+                                            'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="right" title="Delete Data"'
                                           );
                    {php_close}   
                                  

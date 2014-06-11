@@ -80,9 +80,11 @@
 <script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/parsley/parsley.min.js"></script>
 <script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/parsley/i18n/id.js"></script>
 <script type="text/javascript">
-    var base_url = "{php_open} echo base_url(); {php_close}";
-    
+    var base_url = "{php_open} echo base_url(); {php_close}";    
 </script>
+
+<script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/js/app.js"></script>
+
 
 
 {php_open} echo $js; {php_close}
