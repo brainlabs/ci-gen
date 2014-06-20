@@ -121,7 +121,7 @@ class Generate
         if($table)
         {
             $field = $this->get_field($table);
-            
+           // var_dump($field);
             $c = 0;
             
             foreach ($field as $label)
@@ -145,15 +145,15 @@ class Generate
                         $data[] = array(
                                 $label->name,
                                '<div class="form-group">' . $this->_dropdown('fields['. $label->name .'][type]') . '</div>' .
+                                form_hidden('fields['. $label->name .'][max_length]',$label->max_length) .
                                '<div class="form-group hide" id="relation'.$c.'">' .
                                 form_label('Relation Tabel') .
                                 form_dropdown(
                                         'fields['. $label->name .'][table]',
                                         $this->get_table($table),
                                         '',
-                                        'class="form-control input-sm"') .
-                                '</div>'
-                                ,
+                                        'class="form-control input-sm"').                                
+                                '</div>',
                                 form_checkbox(
                                         array(
                                             'name'=> 'fields['. $label->name .'][validation]',
@@ -162,6 +162,7 @@ class Generate
                                             1,
                                         FALSE) . ' Required',
                                 $show,
+                               
                             );
                    }
                }    
@@ -237,64 +238,7 @@ class Generate
     
         
      
-    /**
-     * Get Field Name Form table & Set Field Label 
-     * @param $table table name @string
-     * @return @Array
-     * @access private
-     */
-    /*
-    private function get_field_label ($table = NULL)
-    {
-        $label_name     = array();
-        $field_name     = array();
-        $field_search   = array();
-        $primary_key    = '';
-        $fields         = $this->get_field($table);
-        
-        if($fields)
-        {
-            foreach ($fields as $field)
-            {
-		               
-                // get field if not primary key & if type not timestamp
-                if(!$field->primary_key && $field->type !='timestamp')
-                {
-					
-                    $field_name[] = array('field_name' => $field->name,'label'=> $this->set_label($field->name));
-                    $label_name[] = array('label_name' => $this->set_label($field->name));
-                }
-                
-				// get Primary key field
-                if($field->primary_key)
-                {
-                    $primary_key = $field->name;
-                }
-                
-		// Get field only type Text & Varchar, use to query searching 
-                if($field->type == 'varchar' || $field->type == 'text')
-                {
-                    $field_search[] = array('field_name' => $field->name);
-                }
-                
-            }
-        }
-        
-        return array(
-            'labels'        => $label_name,
-            'fields'        => $field_name,
-            'fields_search' => $field_search,
-            'primary_key'   => $primary_key
-            
-           );
-    }
-     * 
-     */
-    
-    /*
-     * Get Field Primary Key @ Field Search
-     * 
-     */
+
     private function get_primary_key_search($table = null)
     {
         $fields         = $this->get_field($table);
@@ -400,6 +344,7 @@ class Generate
            
           $replace = preg_replace('/_id$/', '', $key);
            
+          $max = (!empty($val['max_length']) ? "'maxlength'=>'" . $val['max_length'] ."'" : '');
 			
 	   // Get Type Input Field from POST Field
            switch ($val['type'])
@@ -411,6 +356,7 @@ class Generate
                                  'id'           => '$key',                       
                                  'class'        => 'form-control input-sm $validation',
                                  'placeholder'  => '" . $this->set_label($key) . "',
+                                 $max
                                  ),
                                  set_value('$key',\${table}['$key'])
                            );";
@@ -465,6 +411,7 @@ class Generate
                                 'rows'          =>'3',
                                 'class'         =>'form-control input-sm $validation',
                                 'placeholder'   =>'". $this->set_label($key) ."',
+                                $max
                                 ),
                             set_value('$key',\${table}['$key'])                           
                             );";
@@ -492,9 +439,10 @@ class Generate
            {
                
                $form[] = array (
-                            'input' => $input,
-                            'label' => $this->set_label($key) . $required,
-                            'field' => $key
+                            'input'         => $input,
+                            'label'         => $this->set_label($key) . $required,
+                            'label_comment' => $this->set_label($key),
+                            'field'         => $key
                         );
                
               
