@@ -458,7 +458,7 @@ class Generate
        
        $source = $this->ci->parser->parse('template/form.php', $data, TRUE);
        
-       write_file($this->output . $table . '/views/form.php', $source);
+       @write_file($this->output . $table . '/views/form.php', $source);
         
     }
     
@@ -484,7 +484,7 @@ class Generate
         $data['tanggal']        = $this->_now();
         $source = $this->ci->parser->parse('template/model', $data, TRUE);
         
-        write_file($this->output . $table . '/models/'. $table .'s.php', $source);
+        @write_file($this->output . $table . '/models/'. $table .'s.php', $source);
         
     }
     
@@ -509,7 +509,7 @@ class Generate
         
         $source = $this->ci->parser->parse('template/controller.php', $data, TRUE);
         
-        write_file($this->output . $table . '/controllers/'. $table .'.php', $source);
+        @write_file($this->output . $table . '/controllers/'. $table .'.php', $source);
         
     }
     
@@ -532,7 +532,7 @@ class Generate
 
         $source = $this->ci->parser->parse('template/view.php', $data, TRUE);
 
-        write_file($this->output . $table . '/views/view.php', $source);
+        @write_file($this->output . $table . '/views/view.php', $source);
         
     }
 
@@ -551,6 +551,9 @@ class Generate
     {
         if($table)
         {
+            
+            if(!is_dir($this->output)){ @mkdir($this->output,DIR_WRITE_MODE,TRUE);}
+            
             if(!is_dir($this->output . $table))
             {
                 @mkdir($this->output . $table,DIR_WRITE_MODE,TRUE);

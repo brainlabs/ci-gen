@@ -157,6 +157,28 @@ class {table} extends MY_Controller
     }
 
     
+    
+    /**
+    * Detail {table}
+    *
+    */
+    public function detail($id='') 
+    {
+        if ($id != '') 
+        {
+
+            $data['{table}'] = $this->{table}s->get_one($id);            
+            $this->template->render('{table}/_detail',$data);
+            
+        }
+        else 
+        {
+            $this->session->set_flashdata('notif', notify('Data tidak ditemukan','info'));
+            redirect(site_url('{table}'));
+        }
+    }
+    
+    
     /**
     * Search {table} like ""
     *

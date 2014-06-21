@@ -38,7 +38,7 @@
                 {labels}
                     <th>{label_name}</th>   
                 {/labels}
-                <th class="red header" align="right" width="160">Aksi</th>
+                <th class="red header" align="right" width="120">Aksi</th>
               </tr>
             </thead>
             
@@ -51,12 +51,21 @@
                {fields}
                <td>{php_open} echo ${table}['{field_name}']; {php_close}</td>
                {/fields}
-                <td>                   
+                <td>    
+                    
+                    {php_open}
+                                  echo anchor(
+                                          site_url('{table}/detail/' . ${table}['{primary_key}']),
+                                            '<i class="glyphicon glyphicon-eye-open"></i>',
+                                            'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Detail"'
+                                          );
+                   {php_close}
+                    
                     {php_open}
                                   echo anchor(
                                           site_url('{table}/edit/' . ${table}['{primary_key}']),
                                             '<i class="glyphicon glyphicon-edit"></i>',
-                                            'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="right" title="Edit Data"'
+                                            'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Edit"'
                                           );
                    {php_close}
                    
@@ -64,7 +73,7 @@
                                   echo anchor(
                                           site_url('{table}/delete/' . ${table}['{primary_key}']),
                                             '<i class="glyphicon glyphicon-trash"></i>',
-                                            'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="right" title="Delete Data"'
+                                            'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Hapus"'
                                           );
                    {php_close}   
                                  

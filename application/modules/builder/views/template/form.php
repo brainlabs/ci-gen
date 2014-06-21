@@ -16,9 +16,9 @@
                   {php_open}                  
                    echo {input}             
                   {php_close}
-                  <p class="help-block ">{php_open} echo form_error('{field}');{php_close}</p>
+                 {php_open} echo form_error('{field}');{php_close}
                 </div>
-              </div> <!--/ {label} -->
+              </div> <!--/ {label_comment} -->
                {/forms}
              
               
