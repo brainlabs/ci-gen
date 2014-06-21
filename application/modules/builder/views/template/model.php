@@ -219,4 +219,36 @@ class {table}s extends CI_Model
         
     }
 
+
+
+
+
+
+
+    {dropdown}
+    
+    // get {tabel}
+    public function get_{tabel}() 
+    {
+      
+        $result = $this->db->get('{tabel}')
+                           ->result();
+
+        $ret ['']= 'Pilih {label} :';
+        if($result)
+        {
+            foreach ($result as $key => $row)
+            {
+                $ret [$row->{primary_key}] = $row->{fill};
+            }
+        }
+        
+        return $ret;
+    }
+
+
+    {/dropdown}
+
+
+
 }

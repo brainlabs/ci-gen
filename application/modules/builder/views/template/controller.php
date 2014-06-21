@@ -55,7 +55,9 @@ class {table} extends MY_Controller
     {       
         $data['{table}'] = $this->{table}s->add();
         $data['action']  = '{table}/save';
-        
+     {dropdown}
+       {data}
+     {/dropdown}
         $this->template->js_add('
                 $(document).ready(function(){
                 // binds form submission and fields to the validation engine
@@ -77,10 +79,11 @@ class {table} extends MY_Controller
         if ($id != '') 
         {
 
-            $data['{table}'] = $this->{table}s->get_one($id);
+            $data['{table}']      = $this->{table}s->get_one($id);
             $data['action']       = '{table}/save/' . $id;           
-            
-           
+      {dropdown2}
+           {data}
+       {/dropdown2}
             $this->template->js_add('
                      $(document).ready(function(){
                     // binds form submission and fields to the validation engine

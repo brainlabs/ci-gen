@@ -149,7 +149,7 @@ class Generate
                                '<div class="form-group hide" id="relation'.$c.'">' .
                                 form_label('Relation Tabel') .
                                 form_dropdown(
-                                        'fields['. $label->name .'][table]',
+                                        'fields['. $label->name .'][relation]',
                                         $this->get_table($table),
                                         '',
                                         'class="form-control input-sm"').                                
@@ -303,13 +303,84 @@ class Generate
 
 
    
+   
+   /**
+     * Create Dropdown fill  on controller
+     * @param $post_field get post field @Mixed 
+     * @return array
+     * @access private
+     */
+   private function create_dropdowns($post_field,$table)
+   {
+       $dropdown = array();
+       
+       foreach ($post_field as $key => $val)
+       {
+          if ($val['type'] == "SELECT")
+          {
+            if($val['relation'])
+            {
+                 $dropdown[]= array(
+                     'data'      =>  "\$data['". $val['relation'] ."'] = \$this->" .$table ."s->get_". $val['relation'] ."();",
+                     'relation'  => $val['relation']
+                 );
+            }
+          }
+       }
+       
+       return $dropdown;
+   }
 
 
-    
-    
-    
-    
-    /**
+
+
+   /**
+     *  Create Dropdown fill  on Model   
+     * @param $post_field get post field @Mixed 
+     * @return array
+     * @access private
+     */
+
+
+   private function _fill($post_field)
+   {
+
+      $ret = array();
+       
+       foreach ($post_field as $key => $val)
+       {
+          if ($val['type'] == "SELECT")
+          {
+            if($val['relation'])
+            {
+
+                $fields = $this->ci->db->list_fields($val['relation']);
+
+                if($fields)
+                {
+                     $ret[]= array(
+                         'primary_key' =>  $fields[0],
+                         'fill'        =>  $fields[1],
+                         'tabel'       =>  $val['relation'],
+                         'label'       => $this->set_label($val['relation']) 
+                     );
+               }
+            }
+          }
+       }
+       
+       return $ret;
+
+   }
+
+   
+
+
+
+
+
+
+   /**
      * Write Form
      * @param $table table name @string
      * @param $post_field get post field @Mixed 
@@ -474,6 +545,7 @@ class Generate
         $all                    = $this->get_field_label($table,$post_field);
         $data                   = $this->php_tags();
         $data['fields_add']     = $all['fields'];
+        $data['dropdown']       = $this->_fill($post_field);
         $data['fields_save']    = $all['fields'];
         $data['fields_update']  = $all['fields'];
         $data['fields_search']  = $all['fields_search'];
@@ -495,10 +567,12 @@ class Generate
      * @return Void
      * @access private
      */
-    private function build_controller($table =NULL,$post_field)
+    private function build_controller($table = NULL,$post_field)
     {
         $all 			= $this->get_field_label($table,$post_field);
         $data                   = $this->php_tags();
+        $data['dropdown']       = $this->create_dropdowns($post_field, $table);
+        $data['dropdown2']      = $data['dropdown'];
         $data['fields_add']     = $all['fields'];
         $data['fields_save']    = $all['fields'];
         $data['primary_key']    = $all['primary_key'];
