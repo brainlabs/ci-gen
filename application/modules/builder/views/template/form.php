@@ -30,7 +30,7 @@
       </div> <!--/ Panel Body -->
     <div class="panel-footer">   
           <div class="row"> 
-              <div class="col-md-12 col-sm-12 col-md-offset-2 col-sm-offset-0">
+              <div class="col-md-10 col-sm-12 col-md-offset-2 col-sm-offset-0">
                    <a href="{php_open} echo site_url('{table}'); {php_close}" class="btn btn-default">
                        <i class="glyphicon glyphicon-chevron-left"></i> Kembali
                    </a> 
