@@ -27,9 +27,6 @@ class dashboard extends MY_Controller
     */
     public function index() 
     {
-        
-        
-       
         $this->template->render('dashboard/view');
 	      
     }

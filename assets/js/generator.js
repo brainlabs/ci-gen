@@ -1,9 +1,7 @@
 $(document).ready(function(){
 	$("#submit").on('click', function(event) {
 		event.preventDefault();
-		
-
-		$.ajax({
+                $.ajax({
                         type     : 'POST',
                         url      : base_url + 'index.php/builder/write',
                         data     : $("#generator").serialize(),

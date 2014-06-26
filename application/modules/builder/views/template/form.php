@@ -41,5 +41,4 @@
           </div>
     </div><!--/ Panel Footer -->       
 </div><!--/ Panel -->
-
 {php_open} echo form_close(); {php_close}  

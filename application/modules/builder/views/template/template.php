@@ -75,8 +75,8 @@
 <script type="text/javascript" src="{php_open} echo base_url(); {php_close}asset/js/html5shiv.js"></script>
 <![endif]-->
 <script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/js/holder.js"></script>
-<script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/js/bootstrap.file-input.js"></script>
+<script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/js/holder.min.js"></script>
+<script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/js/bootstrap.file-input.min.js"></script>
 <script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/parsley/parsley.min.js"></script>
 <script type="text/javascript" src="{php_open} echo base_url(); {php_close}assets/parsley/i18n/id.js"></script>
 <script type="text/javascript">
