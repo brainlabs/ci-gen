@@ -43,7 +43,13 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-signal"></i> Content <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 
-                    <li><a href="<?php echo site_url('surat_keluar'); ?>">Surat Keluar</a></li>
+                    <li><a href="<?php echo site_url('group'); ?>">Group</a></li>
+                
+                    <li><a href="<?php echo site_url('kejadian'); ?>">Kejadian</a></li>
+                
+                    <li><a href="<?php echo site_url('shift_kerja'); ?>">Shift Kerja</a></li>
+                
+                    <li><a href="<?php echo site_url('user'); ?>">User</a></li>
                             
               </ul>
             </li>
@@ -80,11 +86,12 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/parsley.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/i18n/id.js"></script>
 <script type="text/javascript">
-    var base_url = "<?php echo base_url(); ?>";
-    
+    var base_url = "<?php echo base_url(); ?>";    
 </script>
 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/app.js"></script>
+
+
 
 <?php echo $js; ?>
 

@@ -603,6 +603,7 @@ class Generate
         $data['labels']     = $all['labels'];
         $data['primary_key']= $all['primary_key'];
         $data['table']      = $table;
+        $data['table_name'] = $this->set_label($table);
 
         $source = $this->ci->parser->parse('template/view.php', $data, TRUE);
 

@@ -1,17 +1,28 @@
+<div class="row">
+	<div class="col-lg-12 col-md-12">		
+		{php_open} 
+                
+                echo create_breadcrumb();		
+                echo $this->session->flashdata('notify');
+                
+                {php_close}
+	</div>
+</div><!-- /.row -->
+
 <section class="panel panel-default">
     <header class="panel-heading">
         <div class="row">
-            <div class="col-md-8">                
+            <div class="col-md-8 col-xs-3">                
                 {php_open}
                                   echo anchor(
                                            site_url('{table}/add'),
                                             '<i class="glyphicon glyphicon-plus"></i>',
-                                            'class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="right" title="Tambah Data"'
+                                            'class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Tambah Data"'
                                           );
                  {php_close}
                 
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-xs-9">
                                            
                  {php_open} echo form_open(site_url('{table}/search'), 'role="search" class="form"') ;?>       
                            <div class="input-group pull-right">                      
@@ -91,7 +102,7 @@
     <div class="panel-footer">
         <div class="row">
            <div class="col-md-3">
-               {table}
+               {table_name}
                <span class="label label-info">
                     {php_open} echo $total; {php_close}
                </span>
