@@ -34,25 +34,13 @@
             <a class="navbar-brand" href="<?php echo site_url(); ?>">Brain Labs</a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="<?php echo site_url('dashboard'); ?>"><i class="fa fa-windows"></i> Dahsboard</a></li>
-            <li><a href="<?php echo site_url('builder'); ?>"><i class="fa fa-code"></i> Builder</a></li>
+          <ul class="nav navbar-nav">              
+              <li><a href="<?php echo site_url('dashboard'); ?>"><i class="fa fa-windows"></i> Dashboard</a></li>  
+            <li><a href="<?php echo site_url('builder'); ?>"><i class="fa fa-code"></i> Builder</a></li> 
             <li><a href="<?php echo site_url('builder/tools'); ?>"><i class="fa fa-wrench"></i> Tools</a></li>
-            
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-signal"></i> Content <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                
-                    <li><a href="<?php echo site_url('group'); ?>">Group</a></li>
-                
-                    <li><a href="<?php echo site_url('kejadian'); ?>">Kejadian</a></li>
-                
-                    <li><a href="<?php echo site_url('shift_kerja'); ?>">Shift Kerja</a></li>
-                
-                    <li><a href="<?php echo site_url('user'); ?>">User</a></li>
-                            
-              </ul>
-            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><img src="<?php echo base_url('assets/img/ajax-loader.gif'); ?>" id="loader" style="display:none;"/></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -82,15 +70,11 @@
 <![endif]-->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/holder.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.file-input.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/parsley.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/i18n/id.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/parsley.min.js"></script>
 <script type="text/javascript">
-    var base_url = "<?php echo base_url(); ?>";    
+    var base_url = "<?php echo base_url(); ?>";
 </script>
-
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/app.js"></script>
-
 
 
 <?php echo $js; ?>
