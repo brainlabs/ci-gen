@@ -37,31 +37,16 @@
           <ul class="nav navbar-nav">
             <li><a href="{php_open} echo site_url('dashboard'); {php_close}"><i class="fa fa-windows"></i> Dahsboard</a></li>
             <li><a href="{php_open} echo site_url('builder'); {php_close}"><i class="fa fa-code"></i> Builder</a></li>
-            <!--  <li><a href="{php_open} echo site_url('builder/tools'); {php_close}"><i class="fa fa-wrench"></i> Tools</a></li> -->
-            {php_open}   if($menus) : {php_close}
+            <li><a href="{php_open} echo site_url('builder/tools'); {php_close}"><i class="fa fa-wrench"></i> Tools</a></li>
+            
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-signal"></i> Content <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                
-                 {php_open} 
-                foreach ($menus as $key => $val)
-                {   
-					 if($val['name'] !='dashboard' && $val['name'] !='builder') : 
-                {php_close}
-                    <li><a href="{php_open}  echo site_url($val['name']);  {php_close}">{php_open} echo $val['label'];  {php_close}</a></li>
-                
-               {php_open}
-               		endif;
-                }
-               
-                {php_close}
-                             
+                {menus}
+                    <li><a href="{php_open} echo site_url('{link}'); {php_close}">{label}</a></li>
+                {/menus}            
               </ul>
             </li>
-            
-            {php_open}  endif; {php_close}
-            
-            
           </ul>
         </div><!--/.nav-collapse -->
       </div>

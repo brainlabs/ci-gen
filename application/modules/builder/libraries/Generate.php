@@ -614,7 +614,12 @@ class Generate
     }
 
     
-    
+    /**
+     * Write show
+     * @param $table table name
+     * @return Void
+     * @access private
+     */
     private function build_show($table =null,$post_field)
     {
     	$all                = $this->get_field_label($table, $post_field);
@@ -627,6 +632,20 @@ class Generate
     	$source = $this->ci->parser->parse('template/_show.php', $data, TRUE);
     	
     	@write_file($this->output . $table . '/views/_show.php', $source);
+    }
+    
+    
+    /**
+     * Write template   
+     * @return Void
+     * @access private
+     */
+    private function create_template()
+    {
+    	//$data               = $this->php_tags();
+    	$source = $this->ci->parser->parse('template/template.php', $this->php_tags(), TRUE);
+    	 
+    	@write_file(APPPATH . '/views/template.php', $source);
     }
 
 
@@ -664,6 +683,8 @@ class Generate
                 
                 $this->build_view($table, $post_field);
                 $this->build_show($table, $post_field);
+                
+                $this->create_template();
               
                 $msg = "Successfully to generate code of table $table";
             }

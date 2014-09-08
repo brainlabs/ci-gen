@@ -37,7 +37,33 @@
           <ul class="nav navbar-nav">              
               <li><a href="<?php echo site_url('dashboard'); ?>"><i class="fa fa-windows"></i> Dashboard</a></li>  
             <li><a href="<?php echo site_url('builder'); ?>"><i class="fa fa-code"></i> Builder</a></li> 
-            <li><a href="<?php echo site_url('builder/tools'); ?>"><i class="fa fa-wrench"></i> Tools</a></li>
+            <!-- <li><a href="<?php echo site_url('builder/tools'); ?>"><i class="fa fa-wrench"></i> Tools</a></li> -->
+            
+                <?php   if($menus) : ?>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-signal"></i> Content <b class="caret"></b></a>
+              
+              <ul class="dropdown-menu">
+            
+                
+            	<?php   
+                
+                foreach ($menus as $key => $val)
+                {   
+					 if($val['name'] !='dashboard' && $val['name'] !='builder') : 
+                ?>
+                    <li><a href="<?php  echo site_url($val['name']);  ?>"><?php echo $val['label'];  ?></a></li>
+                
+               <?php
+               		endif;
+                }
+               
+                ?>
+                             
+              </ul>
+            </li>
+            <?php  endif; ?>
+            
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><img src="<?php echo base_url('assets/img/ajax-loader.gif'); ?>" id="loader" style="display:none;"/></a></li>

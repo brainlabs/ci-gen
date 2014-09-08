@@ -16,13 +16,14 @@ class builder extends CI_Controller
     }
     
     function index()
-    {
-        $data = array(
-            'table' => $this->generate->get_table()
-        );
+    {		
+    		$data = array(
+            	'table' => $this->generate->get_table(),
+    			'menus' => $this->dir_to_array(APPPATH . 'modules/')
+        	);
        
-       $this->template->js_add('assets/js/generator.js');
-       $this->template->render('generator/index',$data);
+       		$this->template->js_add('assets/js/generator.js');
+       		$this->template->render('generator/index',$data);   
      
     }
     
@@ -79,6 +80,11 @@ class builder extends CI_Controller
         return $result;
     } 
 
+    
+    
+    
+    
+    
     function tools()
     {
        $data['menus'] = $this->dir_to_array(APPPATH . 'modules/');

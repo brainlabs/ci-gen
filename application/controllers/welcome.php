@@ -18,13 +18,8 @@ class Welcome extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()
-	{
-
-		$field =$this->db->list_fields('user');;
-
-
-         print_r($field);
-		//$this->load->view('welcome_message');
+	{		
+		$this->load->view('welcome_message');
 	}
 }
 
