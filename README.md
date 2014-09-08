@@ -9,3 +9,9 @@ Support Modules
 Screenshoot :
 ![ScreenShot](https://raw.github.com/brainlabs/ci-gen/master/ss.png)
 
+
+
+installation :
+==============
+
+run your browser : http://localhost/ci-gen/install
