@@ -20,7 +20,7 @@ class Generate
 
 
     protected $tpl = array (
-                    'table_open'          => '<table class="table table-condensed table-bordered">',
+                    'table_open'          => '<table class="table table-condensed">',
 
                     'heading_row_start'   => '<tr>',
                     'heading_row_end'     => '</tr>',
@@ -47,6 +47,8 @@ class Generate
         $this->ci->load->database();
     }
 
+    
+    
     function year()
     {
         return date('Y');  

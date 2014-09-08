@@ -17,7 +17,7 @@
     <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/main.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/parsley/parsley.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>
@@ -34,13 +34,19 @@
             <a class="navbar-brand" href="<?php echo site_url(); ?>">Brain Labs</a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">              
-              <li><a href="<?php echo site_url('dashboard'); ?>"><i class="fa fa-windows"></i> Dashboard</a></li>  
-            <li><a href="<?php echo site_url('builder'); ?>"><i class="fa fa-code"></i> Builder</a></li> 
+          <ul class="nav navbar-nav">
+            <li><a href="<?php echo site_url('dashboard'); ?>"><i class="fa fa-windows"></i> Dahsboard</a></li>
+            <li><a href="<?php echo site_url('builder'); ?>"><i class="fa fa-code"></i> Builder</a></li>
             <li><a href="<?php echo site_url('builder/tools'); ?>"><i class="fa fa-wrench"></i> Tools</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><img src="<?php echo base_url('assets/img/ajax-loader.gif'); ?>" id="loader" style="display:none;"/></a></li>
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-signal"></i> Content <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                
+                    <li><a href="<?php echo site_url('dolpin'); ?>">Dolpin</a></li>
+                            
+              </ul>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -69,12 +75,16 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>asset/js/html5shiv.js"></script>
 <![endif]-->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/holder.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/i18n/id.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/holder.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.file-input.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/parsley.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/i18n/id.js"></script>
 <script type="text/javascript">
-    var base_url = "<?php echo base_url(); ?>";
+    var base_url = "<?php echo base_url(); ?>";    
 </script>
+
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/app.js"></script>
+
 
 
 <?php echo $js; ?>

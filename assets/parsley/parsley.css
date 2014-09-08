@@ -29,8 +29,6 @@ textarea.parsley-error {
   -ms-transition: all .3s ease-in;
   -moz-transition: all .3s ease-in;
   -webkit-transition: all .3s ease-in;
-  color: #f53535;
-  z-index: 1000;
 }
 
 .parsley-errors-list.filled {

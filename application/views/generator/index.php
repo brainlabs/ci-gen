@@ -1,4 +1,4 @@
-<div class="col-md-3">
+<div class="col-lg-3">
     
     <?php 
     echo form_open("#", 'class="form" id="generator"')
@@ -21,7 +21,10 @@
     <?php echo form_close(); ?>
 </div>
 
-<div class="col-md-9" id="proses">
-  
+<div class="col-lg-9" >
+  	<div class="panel panel-default">
+  		<div class="panel-heading"><span class="fa fa-cog"></span> Form</div>
+  		<div class="panel-body" id="proses"></div>
+  	</div>
 </div>
 

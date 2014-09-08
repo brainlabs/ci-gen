@@ -39,7 +39,7 @@
 			echo form_button(
 							array(
 							    'name'  	=> 'button',
-							    'id' 	=> 'create-menu',
+							    'id' 		=> 'create-menu',
 							    'value' 	=> 'true',
 							    'type'  	=> 'button',
 							    'content' 	=> 'Create Menu',
