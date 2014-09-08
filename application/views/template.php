@@ -43,7 +43,11 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-signal"></i> Content <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 
-                    <li><a href="<?php echo site_url('dolpin'); ?>">Dolpin</a></li>
+                    <li><a href="<?php echo site_url('aktivitas'); ?>">Aktivitas</a></li>
+                
+                    <li><a href="<?php echo site_url('palung'); ?>">Palung</a></li>
+                
+                    <li><a href="<?php echo site_url('radar'); ?>">Radar</a></li>
                             
               </ul>
             </li>

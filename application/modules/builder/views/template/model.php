@@ -212,7 +212,7 @@ class {table}s extends CI_Model
     *  @return void
     *
     */
-    public function delete($id)
+    public function destroy($id)
     {       
         $this->db->where('{primary_key}', $id);
         $this->db->delete('{table}');

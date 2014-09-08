@@ -66,9 +66,9 @@
                     
                     {php_open}
                                   echo anchor(
-                                          site_url('{table}/detail/' . ${table}['{primary_key}']),
+                                          site_url('{table}/show/' . ${table}['{primary_key}']),
                                             '<i class="glyphicon glyphicon-eye-open"></i>',
-                                            'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Detail"'
+                                            'class="btn btn-sm btn-info" data-tooltip="tooltip" data-placement="top" title="Detail"'
                                           );
                    {php_close}
                     
@@ -82,7 +82,7 @@
                    
                    {php_open}
                                   echo anchor(
-                                          site_url('{table}/delete/' . ${table}['{primary_key}']),
+                                          site_url('{table}/destroy/' . ${table}['{primary_key}']),
                                             '<i class="glyphicon glyphicon-trash"></i>',
                                             'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Hapus"'
                                           );

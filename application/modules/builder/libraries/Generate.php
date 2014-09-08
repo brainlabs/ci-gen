@@ -614,6 +614,20 @@ class Generate
     }
 
     
+    
+    private function build_show($table =null,$post_field)
+    {
+    	$all                = $this->get_field_label($table, $post_field);
+        $data               = $this->php_tags();
+        $data['fields']     = $all['fields'];
+        $data['labels']     = $all['labels'];
+        $data['primary_key']= $all['primary_key'];
+        $data['table']      = $table;
+        $data['table_name'] = $this->set_label($table);
+    	$source = $this->ci->parser->parse('template/_show.php', $data, TRUE);
+    	
+    	@write_file($this->output . $table . '/views/_show.php', $source);
+    }
 
 
 	
@@ -649,6 +663,8 @@ class Generate
                 
                 
                 $this->build_view($table, $post_field);
+                $this->build_show($table, $post_field);
+              
                 $msg = "Successfully to generate code of table $table";
             }
             else 

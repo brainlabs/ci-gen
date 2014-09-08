@@ -165,13 +165,13 @@ class {table} extends MY_Controller
     * Detail {table}
     *
     */
-    public function detail($id='') 
+    public function show($id='') 
     {
         if ($id != '') 
         {
 
             $data['{table}'] = $this->{table}s->get_one($id);            
-            $this->template->render('{table}/_detail',$data);
+            $this->template->render('{table}/_show',$data);
             
         }
         else 
@@ -220,11 +220,11 @@ class {table} extends MY_Controller
     * Delete {table} by ID
     *
     */
-    public function delete($id) 
+    public function destroy($id) 
     {        
         if ($id) 
         {
-            $this->{table}s->delete($id);           
+            $this->{table}s->destroy($id);           
              $this->session->set_flashdata('notif', notify('Data berhasil di hapus','success'));
              redirect('{table}');
         } 
