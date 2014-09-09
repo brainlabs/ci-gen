@@ -19,7 +19,7 @@ class builder extends CI_Controller
     {		
     		$data = array(
             	'table' => $this->generate->get_table(),
-    			'menus' => $this->dir_to_array(APPPATH . 'modules/')
+    			
         	);
        
        		$this->template->js_add('assets/js/generator.js');

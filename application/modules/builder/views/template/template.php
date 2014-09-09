@@ -38,12 +38,19 @@
             <li><a href="{php_open} echo site_url('dashboard'); {php_close}"><i class="fa fa-windows"></i> Dahsboard</a></li>
             <li><a href="{php_open} echo site_url('builder'); {php_close}"><i class="fa fa-code"></i> Builder</a></li>
             <!--  <li><a href="{php_open} echo site_url('builder/tools'); {php_close}"><i class="fa fa-wrench"></i> Tools</a></li> -->
+			{php_open}
+				$menus = menu(APPPATH . 'modules/');
+			{php_close}
+			
             {php_open}   if($menus) : {php_close}
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-signal"></i> Content <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 
                  {php_open} 
+				 
+				 
+				 
                 foreach ($menus as $key => $val)
                 {   
 					 if($val['name'] !='dashboard' && $val['name'] !='builder') : 
