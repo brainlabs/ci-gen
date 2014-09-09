@@ -38,7 +38,9 @@
               <li><a href="<?php echo site_url('dashboard'); ?>"><i class="fa fa-windows"></i> Dashboard</a></li>  
             <li><a href="<?php echo site_url('builder'); ?>"><i class="fa fa-code"></i> Builder</a></li> 
             <!-- <li><a href="<?php echo site_url('builder/tools'); ?>"><i class="fa fa-wrench"></i> Tools</a></li> -->
-            
+            <?php
+				$menus = menu(APPPATH . 'modules/');
+			?>
                 <?php   if($menus) : ?>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-signal"></i> Content <b class="caret"></b></a>
