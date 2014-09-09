@@ -20,7 +20,7 @@ run your browser : http://localhost/ci-gen/install,
 
 
 Create Your Own APP :
-================
+=====================
 After installation : <br/>
 1. design your database first, e.g "table, field".<br/>
 2. generate your database in phpmyadmin.<br/>
@@ -29,7 +29,7 @@ After installation : <br/>
 
 Bahasa Indonesia :
 ===================
-setelah diinstall :
+setelah diinstall :<br/>
 1. yang pertama adalah design terlebih dahulu database kamu seperti membuat tabel dan field2nya,<br/>
 2. setelah selesai database yg di buat td lakukan generate database kamu di phpmyadmin. ingat! tabel kamu di buat di nama database pada saat instalasi  <br/>
 3. setelah point nomor 2, buka lah url di browser kamu : http://localhost/ci-gen/<br/>
