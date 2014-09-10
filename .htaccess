@@ -1,7 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /ci-gen
-	
+    	
     RewriteCond %{REQUEST_URI} ^system.*
     RewriteRule ^(.*)$ /index.php?/$1 [L]
     
