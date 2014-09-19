@@ -37,7 +37,7 @@
 // The following values will probably need to be changed.
 $db['default']['username'] = "root";
 $db['default']['password'] = "";
-$db['default']['database'] = "ci_gen";
+$db['default']['database'] = "gss_lama";
 
 // The following values can probably stay the same.
 $db['default']['hostname'] = "localhost";

@@ -17,6 +17,8 @@
     <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/main.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/parsley/parsley.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url(); ?>assets/datepicker/datepicker3.min.css" rel="stylesheet" type="text/css">
+	
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery/jquery-2.1.1.min.js"></script>
 </head>
 
@@ -98,6 +100,10 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/holder.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/i18n/id.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/parsley/parsley.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/datepicker/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/datepicker/locales/bootstrap-datepicker.id.js"></script>
+
+
 <script type="text/javascript">
     var base_url = "<?php echo base_url(); ?>";
 </script>
