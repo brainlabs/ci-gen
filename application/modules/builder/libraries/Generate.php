@@ -205,7 +205,8 @@ class Generate
             'PASSWORD'  =>'PASSWORD',
             'SELECT'    =>'SELECT',
             'TEXTAREA'  =>'TEXTAREA',
-            'FILE'  	=>'FILE',    
+            'FILE'  	=>'FILE', 
+            'DATE'  	=>'DATE',    
             );
         
         
@@ -428,6 +429,19 @@ class Generate
                                  'name'         => '$key',
                                  'id'           => '$key',                       
                                  'class'        => 'form-control input-sm $validation',
+                                 'placeholder'  => '" . $this->set_label($key) . "',
+                                 $max
+                                 ),
+                                 set_value('$key',\${table}['$key'])
+                           );";
+                   break;
+               
+               case 'DATE' :
+                   $input = "form_input(
+                                array(
+                                 'name'         => '$key',
+                                 'id'           => '$key',                       
+                                 'class'        => 'form-control input-sm tanggal $validation',
                                  'placeholder'  => '" . $this->set_label($key) . "',
                                  $max
                                  ),
