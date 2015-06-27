@@ -10,18 +10,16 @@
 |
 |	http://example.com/
 |
-| If this is not set then CodeIgniter will try to guess the protocol, domain
-| and path to your installation. However, you should always configure this
-| explicitly and never rely on auto-guessing, especially in production
-| environments.
+| If this is not set then CodeIgniter will guess the protocol, domain and
+| path to your installation.
 |
 */
-//$config['base_url'] = '';
 $config['base_url']	= 'http://' . $_SERVER['SERVER_NAME'] . str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
 
 
-// Number row perpages
+
 $config['per_page'] = 10;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +31,7 @@ $config['per_page'] = 10;
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -231,7 +229,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = 's3gzjraqoqley8ci4l6ir522d9n8tx';
+$config['encryption_key'] = 'brainlabs@!#$&78686714237642ascdfghjklrtyew@';
 
 /*
 |--------------------------------------------------------------------------
