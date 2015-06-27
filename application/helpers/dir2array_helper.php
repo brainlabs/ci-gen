@@ -1,14 +1,16 @@
-<?php 
-
+<?php
+/**
+ * List directory to array
+ */
 if(!function_exists('dir2array'))
 {
 	function dir2array($dir, $separator = DIRECTORY_SEPARATOR, $paths = 'relative') 
 	{
-	    $result = array();
+	    $result = [];
 	    $cdir = scandir($dir);
 	    foreach ($cdir as $key => $value)
 	    {
-	        if (!in_array($value, array(".", "..")))
+	        if (!in_array($value, [".", ".."]))
 	        {
 	            if (is_dir($dir . $separator . $value))
 	            {

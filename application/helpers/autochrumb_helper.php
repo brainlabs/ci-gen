@@ -1,6 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
+/**
+ * @author Daud D. Simbolon
+ */
 if(!function_exists('set_label'))
 {
     function set_label($text = NULL)

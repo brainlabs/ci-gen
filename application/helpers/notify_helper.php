@@ -1,15 +1,10 @@
 <?php if (!defined('BASEPATH'))     exit('No direct script access allowed');
-/*
- *  Copyright 2013
- * 
- */
 
 /**
  * Alert helper
  *
  * @author Daud Simbolon <daud.simbolon@gmail.com>
  */
-
 
 if(!function_exists('notify'))
 {
@@ -37,8 +32,7 @@ if(!function_exists('notify'))
                  $tpl  = '<div class="alert  alert-info fade>';
                 break;                
         }
-        
-        
+
         $tpl .= '<button type="button" class="close" data-dismiss="alert">&times;</button>';
         $tpl .= '<strong> '. (trim($judul) !='' ? ucwords($judul) : ucwords($type)) .' ! </strong> ' . $msg;
         $tpl .= '<script>
