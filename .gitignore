@@ -10,4 +10,4 @@ application/logs/*
 
 *.log
 
-.old
+*.old
