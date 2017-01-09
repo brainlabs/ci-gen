@@ -11,3 +11,5 @@ application/logs/*
 *.log
 
 *.old
+
+.idea

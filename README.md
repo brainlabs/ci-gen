@@ -35,3 +35,9 @@ setelah diinstall :<br/>
 3. setelah point nomor 2, buka lah url di browser kamu : http://localhost/ci-gen/<br/>
 4. sekarang masuk ke menu "Builder" , setelah muncul, pilih tabel yg mana akan di generate, klu sdh tampil disebelah kanannya tinggal pilih menu yg ada, lalu klik tombol build<br/>
 5. setelah selesai di build, lakukan refresh. nanti akan muncul di menu content yg kmu generate tadi<br/>
+
+## Donation
+If this project help you reduce time to develop, you can give me a cup of coffee :) 
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2QCGAGMCBZSYU)
+
