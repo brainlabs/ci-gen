@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cb51880-de88-4a21-b368-ba7fd4fd1743" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ci-gen.iml" afterPath="$PROJECT_DIR$/.idea/ci-gen.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="ci-gen.iws" />
@@ -28,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="757">
+              <first_editor relative-caret-position="652">
                 <caret line="41" column="157" lean-forward="false" selection-start-line="41" selection-start-column="157" selection-end-line="41" selection-end-column="157" />
                 <folding />
               </first_editor>
@@ -157,12 +156,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1435395395315</updated>
-      <workItem from="1483951056537" duration="139000" />
+      <workItem from="1483951056537" duration="446000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139000" />
+    <option name="totallyTimeSpent" value="446000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="957" extended-state="6" />
@@ -360,7 +359,7 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="757">
+          <first_editor relative-caret-position="652">
             <caret line="41" column="157" lean-forward="false" selection-start-line="41" selection-start-column="157" selection-end-line="41" selection-end-column="157" />
             <folding />
           </first_editor>
