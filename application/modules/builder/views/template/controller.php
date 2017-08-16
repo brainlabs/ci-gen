@@ -95,7 +95,7 @@ class {table} extends MY_Controller
         }
         else 
         {
-            $this->session->set_flashdata('notif', notify('Data tidak ditemukan','info'));
+            $this->session->set_flashdata('notify', notify('Data tidak ditemukan','info'));
             redirect(site_url('{table}'));
         }
     }
@@ -130,7 +130,7 @@ class {table} extends MY_Controller
                       {
                           
                           $this->{table}s->save();
-                          $this->session->set_flashdata('notif', notify('Data berhasil di simpan','success'));
+                          $this->session->set_flashdata('notify', notify('Data berhasil ditambahkan','success'));
                           redirect('{table}');
                       }
                   } 
@@ -148,7 +148,7 @@ class {table} extends MY_Controller
                     if ($this->input->post()) 
                     {
                         $this->{table}s->update($id);
-                        $this->session->set_flashdata('notif', notify('Data berhasil di update','success'));
+                        $this->session->set_flashdata('notify', notify('Data berhasil diupdate','success'));
                         redirect('{table}');
                     }
                 } 
@@ -176,7 +176,7 @@ class {table} extends MY_Controller
         }
         else 
         {
-            $this->session->set_flashdata('notif', notify('Data tidak ditemukan','info'));
+            $this->session->set_flashdata('notify', notify('Data tidak ditemukan','info'));
             redirect(site_url('{table}'));
         }
     }
@@ -225,12 +225,12 @@ class {table} extends MY_Controller
         if ($id) 
         {
             $this->{table}s->destroy($id);           
-             $this->session->set_flashdata('notif', notify('Data berhasil di hapus','success'));
+             $this->session->set_flashdata('notify', notify('Data berhasil dihapus','success'));
              redirect('{table}');
         } 
         else 
         {
-            $this->session->set_flashdata('notif', notify('Data tidak ditemukan','warning'));
+            $this->session->set_flashdata('notify', notify('Data tidak ditemukan','warning'));
             redirect('{table}');
         }       
     }

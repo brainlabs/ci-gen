@@ -487,6 +487,7 @@ class Generate
         $data = $this->php_tags();
         $data['forms'] = $form;
         $data['table'] = $table;
+        $data['table_name'] = $this->set_label($table);
         //$data['php_open']    = "<?php";
         //$data['php_close']   = "? >";
 
@@ -590,7 +591,7 @@ class Generate
         $data['primary_key'] = $all['primary_key'];
         $data['table'] = $table;
         $data['table_name'] = $this->set_label($table);
-        $source = $this->ci->parser->parse('template/_show.php', $data, true);
+        $source = $this->ci->parser->parse('template/show.php', $data, true);
 
         @write_file($this->output . $table . '/views/show.php', $source);
     }
