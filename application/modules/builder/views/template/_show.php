@@ -13,7 +13,7 @@
         foreach(${table} as $table => $value) :    
     {php_close}
     <tr>
-        <td width="20%" align="right"><strong>{php_open} echo $table {php_close}</strong></td>
+        <td width="20%" align="right"><strong>{php_open} echo ucwords(str_replace("_"," ","$table")); {php_close}</strong></td>
         <td>{php_open} echo $value {php_close}</td>
     </tr>
      {php_open} 

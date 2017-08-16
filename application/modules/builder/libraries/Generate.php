@@ -211,7 +211,6 @@ class Generate
         } else {
             $label = '';
         }
-        
         return $label;
     }
     
@@ -585,6 +584,7 @@ class Generate
     {
         $all = $this->get_field_label($table, $post_field);
         $data = $this->php_tags();
+
         $data['fields'] = $all['fields'];
         $data['labels'] = $all['labels'];
         $data['primary_key'] = $all['primary_key'];
@@ -592,7 +592,7 @@ class Generate
         $data['table_name'] = $this->set_label($table);
         $source = $this->ci->parser->parse('template/_show.php', $data, true);
 
-        @write_file($this->output . $table . '/views/_show.php', $source);
+        @write_file($this->output . $table . '/views/show.php', $source);
     }
     
     

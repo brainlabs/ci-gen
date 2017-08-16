@@ -171,7 +171,7 @@ class {table} extends MY_Controller
         {
 
             $data['{table}'] = $this->{table}s->get_one($id);            
-            $this->template->render('{table}/_show',$data);
+            $this->template->render('{table}/show',$data);
             
         }
         else 
