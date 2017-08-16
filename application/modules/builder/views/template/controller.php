@@ -4,11 +4,9 @@
  * Controller {table}
  * @created on : {tanggal}
  * @author Daud D. Simbolon <daud.simbolon@gmail.com>
+ * @editor Jovin <hijovin@gmail.com>
  * Copyright {year}
- *
- *
  */
-
 
 class {table} extends MY_Controller
 {
@@ -55,9 +53,9 @@ class {table} extends MY_Controller
     {       
         $data['{table}'] = $this->{table}s->add();
         $data['action']  = '{table}/save';
-     {dropdown}
-       {data}
-     {/dropdown}
+        {dropdown}
+            {data}
+        {/dropdown}
         $this->template->js_add('
                 $(document).ready(function(){
                 // binds form submission and fields to the validation engine
@@ -65,10 +63,7 @@ class {table} extends MY_Controller
                         });','embed');
       
         $this->template->render('{table}/form',$data);
-
     }
-
-    
 
     /**
     * Call Form to Modify {table}
@@ -158,8 +153,6 @@ class {table} extends MY_Controller
                 }
          }
     }
-
-    
     
     /**
     * Detail {table}
@@ -169,7 +162,6 @@ class {table} extends MY_Controller
     {
         if ($id != '') 
         {
-
             $data['{table}'] = $this->{table}s->get_one($id);            
             $this->template->render('{table}/show',$data);
             
@@ -180,7 +172,6 @@ class {table} extends MY_Controller
             redirect(site_url('{table}'));
         }
     }
-    
     
     /**
     * Search {table} like ""
@@ -215,7 +206,6 @@ class {table} extends MY_Controller
         $this->template->render('{table}/view',$data);
     }
     
-    
     /**
     * Delete {table} by ID
     *
@@ -234,7 +224,5 @@ class {table} extends MY_Controller
             redirect('{table}');
         }       
     }
-
 }
-
 {php_close}
