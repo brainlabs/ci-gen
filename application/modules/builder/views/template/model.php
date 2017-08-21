@@ -8,7 +8,7 @@
  */
  
  
-class {table}s extends CI_Model 
+class {classname}s extends CI_Model 
 {
 
     public function __construct() 

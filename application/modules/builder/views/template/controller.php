@@ -8,7 +8,7 @@
  * Copyright {year}
  */
 
-class {table} extends MY_Controller
+class {classname} extends MY_Controller
 {
 
     public function __construct() 
@@ -109,7 +109,7 @@ class {table} extends MY_Controller
                     array(
                         'field' => '{field_name}',
                         'label' => '{label}',
-                        'rules' => 'trim|xss_clean{rules}'
+                        'rules' => 'trim{rules}'
                         ),
                     {/fields_save}           
                   );

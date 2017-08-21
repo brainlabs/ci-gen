@@ -68,7 +68,7 @@
                {fields}
                <td>{php_open} echo ${table}['{field_name}']; {php_close}</td>
                {/fields}
-                <td>    
+                <td nowrap>    
                     
                     {php_open}
                                   echo anchor(

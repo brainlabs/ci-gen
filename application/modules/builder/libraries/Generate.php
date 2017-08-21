@@ -516,11 +516,15 @@ class Generate
         $data['primary_key'] = $all['primary_key'];
         $data['labels'] = $all['labels'];
         $data['table'] = $table;
+
+        // 21/0/2017
+        $data['classname'] = ucwords(strtolower($table));
+
         $data['year'] = $this->year();
         $data['tanggal'] = $this->_now();
         $source = $this->ci->parser->parse('template/model', $data, true);
         
-        @write_file($this->output . $table . '/models/' . $table . 's.php', $source);
+        @write_file($this->output . $table . '/models/' . $data['classname'] . 's.php', $source);
         
     }
     
@@ -542,12 +546,16 @@ class Generate
         $data['primary_key'] = $all['primary_key'];
         $data['labels'] = $all['labels'];
         $data['table'] = $table;
+
+        // 21/08/2017
+        $data['classname'] = Ucwords(strtolower($table));
+        
         $data['year'] = $this->year();
         $data['tanggal'] = $this->_now();
         
         $source = $this->ci->parser->parse('template/controller.php', $data, true);
         
-        @write_file($this->output . $table . '/controllers/' . $table . '.php', $source);
+        @write_file($this->output . $table . '/controllers/' .$data['classname'] . '.php', $source);
         
     }
     
