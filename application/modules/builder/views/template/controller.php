@@ -212,17 +212,14 @@ class {classname} extends MY_Controller
     */
     public function destroy($id) 
     {        
-        if ($id) 
+        // Agar tabel dengan ID 0 bisa terhapus
+        if ($id>=0) 
         {
             $this->{table}s->destroy($id);           
-             $this->session->set_flashdata('notify', notify('Data berhasil dihapus','success'));
-             redirect('{table}');
-        } 
-        else 
-        {
-            $this->session->set_flashdata('notify', notify('Data tidak ditemukan','warning'));
+            $this->session->set_flashdata('notify', notify('Data berhasil dihapus','success'));
             redirect('{table}');
-        }       
+        }
+
     }
 }
 {php_close}
