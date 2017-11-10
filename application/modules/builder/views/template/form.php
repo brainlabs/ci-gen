@@ -1,17 +1,25 @@
-<div class="row">
-	<div class="col-lg-12 col-md-12">		
-		{php_open} 
+
+<h2>{table_name}</h2>
+
+{php_open} 
+    echo $this->session->flashdata('notify');
+{php_close}
+
+
+<!-- <div class="row">
+    <div class="col-lg-12 col-md-12">        
+        {php_open} 
                 
-                echo create_breadcrumb();		
+                echo create_breadcrumb();        
                 echo $this->session->flashdata('notify');
                 
-                {php_close}
-	</div>
-</div><!-- /.row -->
+    {php_close}
+    </div>
+</div> -->
 
 {php_open} echo form_open(site_url('{table}/' . $action),'role="form" class="form-horizontal" id="form_{table}" parsley-validate'); {php_close}               
 <div class="panel panel-default">
-    <div class="panel-heading"><i class="glyphicon glyphicon-signal"></i> </div>
+    <div class="panel-heading"><i class="glyphicon glyphicon-edit"></i> </div>
      
       <div class="panel-body">
          
@@ -30,7 +38,9 @@
       </div> <!--/ Panel Body -->
     <div class="panel-footer">   
           <div class="row"> 
-              <div class="col-md-10 col-sm-12 col-md-offset-2 col-sm-offset-0">
+              <!-- <div class="col-md-10 col-sm-12 col-md-offset-2 col-sm-offset-0"> -->
+              <div class="col-md-12 col-sm-12 col-lg-12 text-right">
+
                    <a href="{php_open} echo site_url('{table}'); {php_close}" class="btn btn-default">
                        <i class="glyphicon glyphicon-chevron-left"></i> Kembali
                    </a> 

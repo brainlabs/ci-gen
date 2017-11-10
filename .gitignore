@@ -1,5 +1,6 @@
 .DS_Store
 
+
 application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
@@ -13,3 +14,6 @@ application/logs/*
 *.old
 
 .idea/*
+
+.phpintel
+.phpintel/*

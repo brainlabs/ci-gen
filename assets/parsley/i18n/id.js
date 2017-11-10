@@ -4,28 +4,28 @@ window.ParsleyConfig.i18n = window.ParsleyConfig.i18n || {};
 
 // Define then the messages
 window.ParsleyConfig.i18n.id = jQuery.extend(window.ParsleyConfig.i18n.id || {}, {
-  defaultMessage: "tidak valid",
+  defaultMessage: "Pengisian tidak benar",
   type: {
-    email:        "email tidak valid",
-    url:          "url tidak valid",
-    number:       "nomor tidak valid",
-    integer:      "integer tidak valid",
-    digits:       "harus berupa digit",
-    alphanum:     "harus berupa alphanumeric"
+    email:        "Format email valid",
+    url:          "URL tidak valid",
+    number:       "Nomor tidak valid",
+    integer:      "Angka tidak valid",
+    digits:       "Harus berupa digit",
+    alphanum:     "Harus berupa kombinasi huruf dan angka"
   },
-  notblank:       "tidak boleh kosong",
-  required:       "tidak boleh kosong",
-  pattern:        "tidak valid",
-  min:            "harus lebih besar atau sama dengan %s.",
-  max:            "harus lebih kecil atau sama dengan %s.",
-  range:          "harus dalam rentang %s dan %s.",
-  minlength:      "terlalu pendek, minimal %s karakter atau lebih.",
-  maxlength:      "terlalu panjang, maksimal %s karakter atau kurang.",
-  length:         "panjang karakter harus dalam rentang %s dan %s",
-  mincheck:       "pilih minimal %s pilihan",
-  maxcheck:       "pilih maksimal %s pilihan",
-  check:          "pilih antar %s dan %s pilihan",
-  equalto:        "harus sama"
+  notblank:       "Tidak boleh kosong",
+  required:       "Tidak boleh kosong",
+  pattern:        "Tidak valid",
+  min:            "Haru lebih besar atau sama dengan %s.",
+  max:            "Harus lebih kecil atau sama dengan %s.",
+  range:          "Harus dalam rentang %s dan %s.",
+  minlength:      "Terlalu pendek, minimal %s karakter atau lebih.",
+  maxlength:      "Terlalu panjang, maksimal %s karakter atau kurang.",
+  length:         "Panjang karakter harus dalam rentang %s dan %s",
+  mincheck:       "Pilih minimal %s pilihan",
+  maxcheck:       "Pilih maksimal %s pilihan",
+  check:          "Pilih antara %s dan %s pilihan",
+  equalto:        "Harus sama"
 });
 
 // If file is loaded after Parsley main file, auto-load locale

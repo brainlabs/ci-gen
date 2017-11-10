@@ -1,26 +1,32 @@
-<div class="row">
-	<div class="col-lg-12 col-md-12">		
-		{php_open} 
+
+<h2>{table_name}</h2>
+
+{php_open} 
+    echo $this->session->flashdata('notify');
+{php_close}
+
+<!-- <div class="row">
+    <div class="col-lg-12 col-md-12">        
+        {php_open} 
                 
-                echo create_breadcrumb();		
-                echo $this->session->flashdata('notify');
+            echo create_breadcrumb();        
+            echo $this->session->flashdata('notify');
                 
-                {php_close}
-	</div>
-</div><!-- /.row -->
+        {php_close}
+    </div>
+</div> -->
 
 <section class="panel panel-default">
     <header class="panel-heading">
         <div class="row">
             <div class="col-md-8 col-xs-3">                
                 {php_open}
-                                  echo anchor(
-                                           site_url('{table}/add'),
-                                            '<i class="glyphicon glyphicon-plus"></i>',
-                                            'class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Tambah Data"'
-                                          );
-                 {php_close}
-                
+                      echo anchor(
+                               site_url('{table}/add'),
+                                '<i class="glyphicon glyphicon-plus"></i> Tambah',
+                                'class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Tambah Data"'
+                              );
+                {php_close}
             </div>
             <div class="col-md-4 col-xs-9">
                                            
@@ -62,7 +68,7 @@
                {fields}
                <td>{php_open} echo ${table}['{field_name}']; {php_close}</td>
                {/fields}
-                <td>    
+                <td nowrap>    
                     
                     {php_open}
                                   echo anchor(
@@ -84,7 +90,7 @@
                                   echo anchor(
                                           site_url('{table}/destroy/' . ${table}['{primary_key}']),
                                             '<i class="glyphicon glyphicon-trash"></i>',
-                                            'onclick="return confirm(\'Anda yakin..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Hapus"'
+                                            'onclick="return confirm(\'Apakah anda yakin ingin menghapus?\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Hapus"'
                                           );
                    {php_close}   
                                  

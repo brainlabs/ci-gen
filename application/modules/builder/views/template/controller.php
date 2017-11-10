@@ -4,13 +4,11 @@
  * Controller {table}
  * @created on : {tanggal}
  * @author Daud D. Simbolon <daud.simbolon@gmail.com>
+ * @editor Jovin <hijovin@gmail.com>
  * Copyright {year}
- *
- *
  */
 
-
-class {table} extends MY_Controller
+class {classname} extends MY_Controller
 {
 
     public function __construct() 
@@ -55,9 +53,9 @@ class {table} extends MY_Controller
     {       
         $data['{table}'] = $this->{table}s->add();
         $data['action']  = '{table}/save';
-     {dropdown}
-       {data}
-     {/dropdown}
+        {dropdown}
+            {data}
+        {/dropdown}
         $this->template->js_add('
                 $(document).ready(function(){
                 // binds form submission and fields to the validation engine
@@ -65,10 +63,7 @@ class {table} extends MY_Controller
                         });','embed');
       
         $this->template->render('{table}/form',$data);
-
     }
-
-    
 
     /**
     * Call Form to Modify {table}
@@ -95,7 +90,7 @@ class {table} extends MY_Controller
         }
         else 
         {
-            $this->session->set_flashdata('notif', notify('Data tidak ditemukan','info'));
+            $this->session->set_flashdata('notify', notify('Data tidak ditemukan','info'));
             redirect(site_url('{table}'));
         }
     }
@@ -114,7 +109,7 @@ class {table} extends MY_Controller
                     array(
                         'field' => '{field_name}',
                         'label' => '{label}',
-                        'rules' => 'trim|xss_clean{rules}'
+                        'rules' => 'trim{rules}'
                         ),
                     {/fields_save}           
                   );
@@ -130,7 +125,7 @@ class {table} extends MY_Controller
                       {
                           
                           $this->{table}s->save();
-                          $this->session->set_flashdata('notif', notify('Data berhasil di simpan','success'));
+                          $this->session->set_flashdata('notify', notify('Data berhasil ditambahkan','success'));
                           redirect('{table}');
                       }
                   } 
@@ -148,7 +143,7 @@ class {table} extends MY_Controller
                     if ($this->input->post()) 
                     {
                         $this->{table}s->update($id);
-                        $this->session->set_flashdata('notif', notify('Data berhasil di update','success'));
+                        $this->session->set_flashdata('notify', notify('Data berhasil diupdate','success'));
                         redirect('{table}');
                     }
                 } 
@@ -158,8 +153,6 @@ class {table} extends MY_Controller
                 }
          }
     }
-
-    
     
     /**
     * Detail {table}
@@ -169,18 +162,16 @@ class {table} extends MY_Controller
     {
         if ($id != '') 
         {
-
             $data['{table}'] = $this->{table}s->get_one($id);            
-            $this->template->render('{table}/_show',$data);
+            $this->template->render('{table}/show',$data);
             
         }
         else 
         {
-            $this->session->set_flashdata('notif', notify('Data tidak ditemukan','info'));
+            $this->session->set_flashdata('notify', notify('Data tidak ditemukan','info'));
             redirect(site_url('{table}'));
         }
     }
-    
     
     /**
     * Search {table} like ""
@@ -215,26 +206,20 @@ class {table} extends MY_Controller
         $this->template->render('{table}/view',$data);
     }
     
-    
     /**
     * Delete {table} by ID
     *
     */
     public function destroy($id) 
     {        
-        if ($id) 
+        // Agar tabel dengan ID 0 bisa terhapus
+        if ($id>=0) 
         {
             $this->{table}s->destroy($id);           
-             $this->session->set_flashdata('notif', notify('Data berhasil di hapus','success'));
-             redirect('{table}');
-        } 
-        else 
-        {
-            $this->session->set_flashdata('notif', notify('Data tidak ditemukan','warning'));
+            $this->session->set_flashdata('notify', notify('Data berhasil dihapus','success'));
             redirect('{table}');
-        }       
+        }
+
     }
-
 }
-
 {php_close}

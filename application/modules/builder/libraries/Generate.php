@@ -211,7 +211,6 @@ class Generate
         } else {
             $label = '';
         }
-        
         return $label;
     }
     
@@ -488,6 +487,7 @@ class Generate
         $data = $this->php_tags();
         $data['forms'] = $form;
         $data['table'] = $table;
+        $data['table_name'] = $this->set_label($table);
         //$data['php_open']    = "<?php";
         //$data['php_close']   = "? >";
 
@@ -516,11 +516,15 @@ class Generate
         $data['primary_key'] = $all['primary_key'];
         $data['labels'] = $all['labels'];
         $data['table'] = $table;
+
+        // 21/0/2017
+        $data['classname'] = ucwords(strtolower($table));
+
         $data['year'] = $this->year();
         $data['tanggal'] = $this->_now();
         $source = $this->ci->parser->parse('template/model', $data, true);
         
-        @write_file($this->output . $table . '/models/' . $table . 's.php', $source);
+        @write_file($this->output . $table . '/models/' . $data['classname'] . 's.php', $source);
         
     }
     
@@ -542,12 +546,16 @@ class Generate
         $data['primary_key'] = $all['primary_key'];
         $data['labels'] = $all['labels'];
         $data['table'] = $table;
+
+        // 21/08/2017
+        $data['classname'] = Ucwords(strtolower($table));
+        
         $data['year'] = $this->year();
         $data['tanggal'] = $this->_now();
         
         $source = $this->ci->parser->parse('template/controller.php', $data, true);
         
-        @write_file($this->output . $table . '/controllers/' . $table . '.php', $source);
+        @write_file($this->output . $table . '/controllers/' .$data['classname'] . '.php', $source);
         
     }
     
@@ -585,14 +593,15 @@ class Generate
     {
         $all = $this->get_field_label($table, $post_field);
         $data = $this->php_tags();
+
         $data['fields'] = $all['fields'];
         $data['labels'] = $all['labels'];
         $data['primary_key'] = $all['primary_key'];
         $data['table'] = $table;
         $data['table_name'] = $this->set_label($table);
-        $source = $this->ci->parser->parse('template/_show.php', $data, true);
+        $source = $this->ci->parser->parse('template/show.php', $data, true);
 
-        @write_file($this->output . $table . '/views/_show.php', $source);
+        @write_file($this->output . $table . '/views/show.php', $source);
     }
     
     
